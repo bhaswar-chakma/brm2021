@@ -8,6 +8,15 @@ author: "Bhaswar Chakma"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## **Class Rules**
+
+- Every question is important!
+- Do not hesitate to ask questions!
+- Do not hestiate to email!
+
+You can reach me at bhaswar.chakma@ucp.pt
+
+
 ## **R & RStudio**
 
 ### Download R & RStudio
@@ -30,13 +39,7 @@ Team Code: **8v3yyjn**
 ![](images/teams2.png){width=100%}
 
 
-## **Class Rules**
 
-- Every question is important!
-- Do not hesitate to ask questions!
-- Do not hestiate to email!
-
-You can reach me at bhaswar.chakma@ucp.pt
 
 ## **Today's Objectives**
 
