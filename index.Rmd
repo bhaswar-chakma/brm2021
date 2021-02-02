@@ -1,0 +1,8 @@
+---
+title: "Welcome to BRM LAB!"
+---
+![](images/R-RS-logo.png){width=100%}
+
+
+**Last Updated: `r lubridate::today()`**
+

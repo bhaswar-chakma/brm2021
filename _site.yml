@@ -1,0 +1,15 @@
+name: "BRM LAB"
+navbar:
+  title: "Business Research Methods"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Week 1"
+      href: week1.html
+
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    
+    
