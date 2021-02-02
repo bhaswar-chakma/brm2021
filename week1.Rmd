@@ -43,16 +43,33 @@ You can reach me at bhaswar.chakma@ucp.pt
 - Create RMarkdown document
   + PDF
   + HTML
-- R Basics
+- R Basics (if time permits)
 
-## **Install TinyTex**
+### Checklist
 
-```
-tinytex::install_tinytex()
-```
+- Install Packages
+  + `bookdown`
+  + `tinytex`
+    + `tinytex::install_tinytex()`
+
+
+- Open and save RMD
+- RStudio Project
+- Workspace Settings
+- RMD:
+  + `echo = FALSE`
+  + `echo = TRUE`
+  + `include = FALSE`
+  + `include = TRUE`
+  + insert R code chunk: `Ctrl + Alt + I (Cmd + Option + I on macOS)`
+  + chunk-label and errors
+  + Help/Markdown Quick Reference
+    + [Cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+
 
 ## **Survey**
 
 Matter of 5 minutes!
 
-[7 Questions](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUMVpXVktGUjRYNkpGUExQWVY1UEUyRUUyOC4u)
+[Questions](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUMVpXVktGUjRYNkpGUExQWVY1UEUyRUUyOC4u)
