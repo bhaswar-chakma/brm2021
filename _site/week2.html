@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Bhaswar Chakma" />
 
 
-<title>Welcome to BRM LAB!</title>
+<title>Week 2</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -302,17 +303,282 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Welcome to BRM LAB!</h1>
+<h1 class="title toc-ignore">Week 2</h1>
+<h4 class="author">Bhaswar Chakma</h4>
+<h4 class="date">2/9/2021</h4>
 
 </div>
 
 
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<div id="italics-and-bold" class="section level3">
+<h3>Italics and Bold</h3>
+<pre><code>Normal text
+
+**bold**
+
+_italics_   
+
+*italics second option* </code></pre>
+<p>Normal text</p>
+<p><strong>bold</strong></p>
+<p><em>italics</em></p>
+<p><em>italics second option</em></p>
+</div>
+<div id="code-blocks" class="section level3">
+<h3>Code Blocks</h3>
+<pre><code>`2+2`   </code></pre>
+<p><code>2+2</code></p>
+</div>
+<div id="headers" class="section level3">
+<h3>Headers</h3>
+<pre><code># Header level 1
+## Header level 2
+### Header level 3</code></pre>
+<p><img src="images/headers.png" /></p>
+<hr />
+</div>
+<div id="footnote" class="section level3">
+<h3>Footnote</h3>
+<pre><code>text^[My Footnote.]</code></pre>
+<p>text<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="links" class="section level3">
+<h3>Links</h3>
+<pre><code>[introR](https://af-ucp.courses/introR/)    </code></pre>
+<p><a href="https://af-ucp.courses/introR/">introR</a></p>
+</div>
+<div id="superscript-and-subscript" class="section level3">
+<h3>Superscript and Subscript</h3>
+<pre><code>super^th^   
+sub~pt~</code></pre>
+<p>super<sup>th</sup><br />
+sub<sub>pt</sub></p>
+</div>
+</div>
+<div id="r-code" class="section level2">
+<h2>R Code</h2>
+<p>Insert R code chunk:</p>
 <ul>
-<li><a href="https://af-ucp.courses/introR/">introR</a></li>
-<li><a href="https://moodle.lisboa.ucp.pt/login/index.php">Moodle</a></li>
-<li><a href="https://teams.microsoft.com/l/channel/19%3a74dc309fc8aa4e6cbd97f6fbd7ab8e0b%40thread.tacv2/General?groupId=3d9f17cf-cbb9-4156-aca7-da2eb5feaa16&amp;tenantId=b3e38b18-ba39-42b1-ac1a-3725b548a1ba">Teams</a></li>
+<li>Windows: <code>Ctrl + Alt + I</code></li>
+<li>Mac: <code>Cmd + Option + I on macOS</code></li>
+<li>click the insert button</li>
 </ul>
-<p><strong>Last Updated: 2021-02-09</strong></p>
+<p>Try <code>2 + 2</code></p>
+<ul>
+<li>show output only <code>echo = FALSE</code></li>
+</ul>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>show code and output <code>echo = TRUE</code></li>
+</ul>
+<pre class="r"><code>2+2</code></pre>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li><p>show nothing but run code <code>include = FALSE</code></p></li>
+<li><p>show nothing and don’t run code <code>echo = FALSE, include = FALSE</code></p></li>
+<li><p>inline code?</p></li>
+<li><p>chunk label</p></li>
+</ul>
+</div>
+<div id="cross-referencing-citations" class="section level2 tabset">
+<h2>Cross-Referencing &amp; Citations</h2>
+<div id="bookdown-features" class="section level3">
+<h3>bookdown features</h3>
+<pre><code>---
+title: &quot;Nice Title&quot;
+author: &quot;Your Name&quot;
+date: &quot;2/9/2021&quot;
+output:
+  bookdown::xxx_document2
+---
+
+# Chapter One
+
+blah blah
+
+## Fruits
+
+blah blah
+
+### apple
+whatever
+
+### banana
+whatever
+
+# Chapter Two
+
+## Computers
+
+blah blah
+
+### Windows
+whatever
+
+### Mac
+whatever</code></pre>
+<p><strong>xxx: <code>html</code> ; <code>pdf</code></strong></p>
+</div>
+<div id="cross-referencing" class="section level3">
+<h3>Cross-Referencing</h3>
+<pre><code>---
+title: &quot;Nice Title&quot;
+author: &quot;Your Name&quot;
+date: &quot;2/9/2021&quot;
+output:
+  bookdown::html_document2
+---
+
+# Chapter One{#ch1}
+
+blah blah
+
+## Fruits
+
+blah blah
+
+### apple
+whatever
+
+### banana
+whatever
+
+# Chapter Two
+
+## Computers
+
+blah blah
+
+### Windows
+whatever
+
+### Mac
+whatever
+
+See chapter \@ref(ch1) for details.</code></pre>
+</div>
+<div id="citations" class="section level3">
+<h3>Citations</h3>
+<ul>
+<li><p>Create a <code>.bib</code> file.</p></li>
+<li><p>Use Google Scholar</p></li>
+<li><p>File/New File/ Text File</p></li>
+</ul>
+<pre><code>---
+title: &quot;Nice Title&quot;
+author: &quot;Your Name&quot;
+date: &quot;2/9/2021&quot;
+output:
+  bookdown::html_document2
+bibliography: ref.bib
+---
+
+# Chapter One{#ch1}
+
+blah blah
+
+## Fruits
+
+blah blah
+
+### apple
+whatever
+
+### banana
+whatever
+
+# Chapter Two
+
+## Computers
+
+blah blah
+
+### Windows
+whatever
+
+### Mac
+whatever
+
+See @wickham2014 for further details.
+
+R is awesome[@wickham2014]
+
+*** Note: last section is # Reference. nothing comes after # Reference
+
+
+# Reference</code></pre>
+<p>For more detailed instructions, see <a href="https://af-ucp.courses/introR/mrmd.html#citereferences" class="uri">https://af-ucp.courses/introR/mrmd.html#citereferences</a>.</p>
+</div>
+<div id="more-cross-ref-plots" class="section level3">
+<h3>More Cross-Ref: Plots</h3>
+<ul>
+<li>For the cross-referencing to work, the figure must have a caption.</li>
+</ul>
+<pre><code>---
+title: &quot;Nice Title&quot;
+author: &quot;Your Name&quot;
+date: &quot;2/9/2021&quot;
+output:
+  bookdown::html_document2
+bibliography: ref.bib
+---
+
+# Chapter One{#ch1}
+
+blah blah
+
+## Fruits
+
+blah blah
+
+### apple
+whatever
+
+### banana
+whatever
+
+# Chapter Two
+
+## Computers
+
+blah blah
+
+### Windows
+whatever
+
+### Mac
+whatever
+
+See @wickham2014 for further details.
+
+R is awesome[@wickham2014]
+
+## Plots
+
+YOUR TURN:
+
+- Insert R code 
+- label it as *pressure*
+- use `echo=FALSE, fig.cap=&quot;A nice plot`
+- code: `plot(pressure)`
+
+
+See figure \@ref(fig:pressure)
+
+# Reference</code></pre>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>My Footnote.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
 
 
 

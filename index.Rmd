@@ -1,8 +1,12 @@
 ---
 title: "Welcome to BRM LAB!"
 ---
-![](images/R-RS-logo.png){width=100%}
 
+
+
+- [introR](https://af-ucp.courses/introR/)
+- [Moodle](https://moodle.lisboa.ucp.pt/login/index.php)
+- [Teams](https://teams.microsoft.com/l/channel/19%3a74dc309fc8aa4e6cbd97f6fbd7ab8e0b%40thread.tacv2/General?groupId=3d9f17cf-cbb9-4156-aca7-da2eb5feaa16&tenantId=b3e38b18-ba39-42b1-ac1a-3725b548a1ba)
 
 **Last Updated: `r lubridate::today()`**
 
