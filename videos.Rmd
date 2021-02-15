@@ -1,0 +1,16 @@
+---
+title: "Videos"
+---
+# {.tabset}
+
+## Markdown
+
+- [Basics](https://web.microsoftstream.com/video/f34f2422-a37f-4d6c-a308-286eff4d612b)
+
+- [Table](https://web.microsoftstream.com/video/7d118abb-8217-42e5-a726-6532b5e64f33)
+
+- [R Code](https://web.microsoftstream.com/video/086f58c3-3a0b-4661-be77-68ea72c5e0a4)
+
+- [Image](https://web.microsoftstream.com/video/88f59283-7c4d-419e-b6c2-a4655073916a)
+
+

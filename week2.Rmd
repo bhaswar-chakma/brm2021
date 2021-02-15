@@ -78,7 +78,7 @@ sub~pt~
 Insert R code chunk: 
 
 - Windows: `Ctrl + Alt + I`
-- Mac: `Cmd + Option + I on macOS`
+- Mac: `Cmd + Option + I`
 - click the insert button
 
 Try `2 + 2`
@@ -306,8 +306,8 @@ YOUR TURN:
 
 - Insert R code 
 - label it as *pressure*
-- use `echo=FALSE, fig.cap="A nice plot`
-- code: `plot(pressure)`
+- use echo=FALSE, fig.cap="A nice plot"
+- code: plot(pressure)
 
 
 See figure \@ref(fig:pressure)

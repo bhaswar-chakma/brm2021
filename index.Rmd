@@ -1,12 +1,30 @@
 ---
 title: "Welcome to BRM LAB!"
 ---
+Last Updated: `r lubridate::today()`
+
+-------------------------------------------------
+
+### Announcement
+
+**Starting from next class (23 Feb), I will take class using Teams.**
+
+  - To join Teams, click the link below or use the code (see [Week 1](https://brmlab2021.netlify.app/week1.html) for instructions)
 
 
+### Links
 
 - [introR](https://af-ucp.courses/introR/)
-- [Moodle](https://moodle.lisboa.ucp.pt/login/index.php)
-- [Teams](https://teams.microsoft.com/l/channel/19%3a74dc309fc8aa4e6cbd97f6fbd7ab8e0b%40thread.tacv2/General?groupId=3d9f17cf-cbb9-4156-aca7-da2eb5feaa16&tenantId=b3e38b18-ba39-42b1-ac1a-3725b548a1ba)
 
-**Last Updated: `r lubridate::today()`**
+- [Videos](https://teams.microsoft.com/_#/school/tab::5ec7f989-76d9-4c9b-b67c-e66a2b2ed5a0/General?threadId=19:74dc309fc8aa4e6cbd97f6fbd7ab8e0b@thread.tacv2&ctx=channel): This will take you to Teams' video collection. To browse by topic, click [here](https://brmlab2021.netlify.app/videos.html).
+
+
+
+- [Moodle](https://moodle.lisboa.ucp.pt/login/index.php)
+
+- [Join Teams](https://teams.microsoft.com/l/channel/19%3a74dc309fc8aa4e6cbd97f6fbd7ab8e0b%40thread.tacv2/General?groupId=3d9f17cf-cbb9-4156-aca7-da2eb5feaa16&tenantId=b3e38b18-ba39-42b1-ac1a-3725b548a1ba)
+
+
+
+
 
