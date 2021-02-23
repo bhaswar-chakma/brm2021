@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Bhaswar Chakma" />
+
+<meta name="date" content="2021-02-23" />
+
+<title>Week 4</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Research Methods</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="videos.html">Video Tutorials</a>
+</li>
+<li>
+  <a href="week1.html">Week 1</a>
+</li>
+<li>
+  <a href="week2.html">Week 2</a>
+</li>
+<li>
+  <a href="week3.html">Week 3</a>
+</li>
+<li>
+  <a href="week4.html">Week 4</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Week 4</h1>
+<h4 class="author">Bhaswar Chakma</h4>
+<h4 class="date">23 Feb 2021</h4>
+
+</div>
+
+
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+<ul>
+<li><p>R Script</p></li>
+<li><p>Working Directory and RStudio Project</p></li>
+<li><p>Read Data</p></li>
+<li><p>Explore</p></li>
+</ul>
+</div>
+<div id="r-script" class="section level2">
+<h2>R Script</h2>
+<p><img src="images/instruments.jpg" /></p>
+<hr />
+<ul>
+<li><code>&lt;-</code> : your best friend, the assignment operator.</li>
+<li><code>=</code> does the same job. DO NOT USE IT!</li>
+<li><code>#</code>: write comments</li>
+</ul>
+<p><img src="images/rscript.png" /></p>
+<p><img src="images/panes.png" /></p>
+<p>Let’s fire up RStudio!</p>
+</div>
+<div id="working-directory-and-rstudio-project" class="section level2">
+<h2>Working Directory and RStudio Project</h2>
+<div id="where-are-your-files" class="section level3">
+<h3>Where are your files?</h3>
+<pre class="r"><code>getwd()</code></pre>
+</div>
+<div id="change-location" class="section level3">
+<h3>Change location?</h3>
+<pre class="r"><code>setwd()</code></pre>
+<ul>
+<li>Windows: Copy the path
+<ul>
+<li>use <code>\\</code> or change to <code>/</code></li>
+</ul></li>
+<li>Mac: Just copy the path
+<ul>
+<li>Don’t know how? Google!</li>
+</ul></li>
+<li>Example: <code>setwd("C:/Users/JimiHendrix/Desktop")</code></li>
+</ul>
+</div>
+<div id="a-wise-and-common-practice" class="section level3">
+<h3>A wise and common practice</h3>
+<ul>
+<li>Use RStudio Project</li>
+</ul>
+</div>
+<div id="instruct-rstudio-not-to-preserve-your-workspace-between-sessions" class="section level3">
+<h3>Instruct RStudio not to preserve your workspace between sessions</h3>
+<p>Click <code>Tools</code> then <code>Global Options...</code></p>
+<p><img src="images/rdata.png" /></p>
+</div>
+</div>
+<div id="read-data" class="section level2">
+<h2>Read Data</h2>
+<p>Files:</p>
+<ul>
+<li>Text</li>
+<li>Excel</li>
+</ul>
+<p>Packages Required:</p>
+<ul>
+<li><code>readxl</code></li>
+<li><code>readr</code></li>
+</ul>
+<p>Steps:</p>
+<ol style="list-style-type: decimal">
+<li>Go to the Environment pane</li>
+<li>Click Import Dataset</li>
+<li>Select the file type
+<ul>
+<li><code>From Text(readr)</code> or</li>
+<li><code>From Excel</code></li>
+</ul></li>
+<li>Locate the file; If needed, modify the options; Done!</li>
+</ol>
+<p>Data:</p>
+<ul>
+<li>Create a folder <code>data</code> in your project directory.</li>
+<li><a href="https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EtziHFqAtc5BsmTvQ1nc9XIBP8d6H9_ns-vNPvMzCwjQ3g?e=C5Dwv4">Click here to download</a> or check in Teams/Files.</li>
+<li>Save them in the <code>data</code>folder.</li>
+</ul>
+</div>
+<div id="explore" class="section level2">
+<h2>Explore</h2>
+<p>Let’s install the <code>tidyverse</code></p>
+<ul>
+<li><p>It is a set of packages. More info <a href="https://www.tidyverse.org/packages/">here</a>.</p></li>
+<li><p><code>install.packages("tidyverse")</code></p></li>
+</ul>
+<p>Today we will use the following packages:</p>
+<ul>
+<li><code>dplyr</code>: use the functions <code>select()</code>, <code>filter()</code> and <code>arrange()</code></li>
+<li><code>magrittr</code>: use the pipe operator <code>%&gt;%</code></li>
+</ul>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>Inspect the file <code>mcap20210221.xlsx</code>.</p>
+<pre class="r"><code>library(dplyr)
+library(readxl)
+read_excel(&quot;data/w4/mcap20210221.xlsx&quot;, sheet = &quot;global100b&quot;) # i put my data in the subfolder w4</code></pre>
+<pre><code>## # A tibble: 157 x 5
+##    `Updated at 19:~ `Company Common~ `Company Market~ `Country of Hea~
+##    &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           
+##  1 DE.N             Deere &amp; Co                   104. United States o~
+##  2 VOWG_p.DE        Volkswagen AG                110. Germany         
+##  3 AXP.N            American Expres~             106. United States o~
+##  4 IBM.N            International B~             106. United States o~
+##  5 UNP.N            Union Pacific C~             140. United States o~
+##  6 AAPL.OQ          Apple Inc                   2180. United States o~
+##  7 MCD.N            Mcdonald&#39;s Corp              158. United States o~
+##  8 NKE.N            Nike Inc                     224. United States o~
+##  9 TSLA.OQ          Tesla Inc                    750. United States o~
+## 10 PRX.AS           Prosus NV                    212. Netherlands     
+## # ... with 147 more rows, and 1 more variable: `TRBC Industry Name` &lt;chr&gt;</code></pre>
+<pre class="r"><code>df_global &lt;- read_excel(&quot;data/w4/mcap20210221.xlsx&quot;, sheet = &quot;global100b&quot;)
+
+######################
+#      Check 
+######################
+head(df_global) # first six observations</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   `Updated at 19:~ `Company Common~ `Company Market~ `Country of Hea~
+##   &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           
+## 1 DE.N             Deere &amp; Co                   104. United States o~
+## 2 VOWG_p.DE        Volkswagen AG                110. Germany         
+## 3 AXP.N            American Expres~             106. United States o~
+## 4 IBM.N            International B~             106. United States o~
+## 5 UNP.N            Union Pacific C~             140. United States o~
+## 6 AAPL.OQ          Apple Inc                   2180. United States o~
+## # ... with 1 more variable: `TRBC Industry Name` &lt;chr&gt;</code></pre>
+<pre class="r"><code>tail(df_global) # last six observations</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   `Updated at 19:~ `Company Common~ `Company Market~ `Country of Hea~
+##   &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           
+## 1 T.N              AT&amp;T Inc                     207. United States o~
+## 2 TD.TO            Toronto-Dominio~             109. Canada          
+## 3 RELI.NS          Reliance Indust~             189. India           
+## 4 UPS.N            United Parcel S~             139. United States o~
+## 5 601398.SS        Industrial and ~             288. China           
+## 6 601939.SS        China Construct~             201. China           
+## # ... with 1 more variable: `TRBC Industry Name` &lt;chr&gt;</code></pre>
+<pre class="r"><code>######################
+# Check column names
+######################
+colnames(df_global)</code></pre>
+<pre><code>## [1] &quot;Updated at 19:02:34&quot;     &quot;Company Common Name&quot;    
+## [3] &quot;Company Market Cap&quot;      &quot;Country of Headquarters&quot;
+## [5] &quot;TRBC Industry Name&quot;</code></pre>
+<pre class="r"><code>names(df_global)</code></pre>
+<pre><code>## [1] &quot;Updated at 19:02:34&quot;     &quot;Company Common Name&quot;    
+## [3] &quot;Company Market Cap&quot;      &quot;Country of Headquarters&quot;
+## [5] &quot;TRBC Industry Name&quot;</code></pre>
+<pre class="r"><code>#############################
+# Number of Columns and Rows
+#############################
+nrow(df_global)</code></pre>
+<pre><code>## [1] 157</code></pre>
+<pre class="r"><code>ncol(df_global)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>###################
+# Structure &amp; Class
+#####################
+str(df_global)</code></pre>
+<pre><code>## tibble [157 x 5] (S3: tbl_df/tbl/data.frame)
+##  $ Updated at 19:02:34    : chr [1:157] &quot;DE.N&quot; &quot;VOWG_p.DE&quot; &quot;AXP.N&quot; &quot;IBM.N&quot; ...
+##  $ Company Common Name    : chr [1:157] &quot;Deere &amp; Co&quot; &quot;Volkswagen AG&quot; &quot;American Express Co&quot; &quot;International Business Machines Corp&quot; ...
+##  $ Company Market Cap     : num [1:157] 104 110 106 106 140 ...
+##  $ Country of Headquarters: chr [1:157] &quot;United States of America&quot; &quot;Germany&quot; &quot;United States of America&quot; &quot;United States of America&quot; ...
+##  $ TRBC Industry Name     : chr [1:157] &quot;Heavy Machinery &amp; Vehicles&quot; &quot;Auto &amp; Truck Manufacturers&quot; &quot;Consumer Lending&quot; &quot;IT Services &amp; Consulting&quot; ...</code></pre>
+<pre class="r"><code>glimpse(df_global)</code></pre>
+<pre><code>## Rows: 157
+## Columns: 5
+## $ `Updated at 19:02:34`     &lt;chr&gt; &quot;DE.N&quot;, &quot;VOWG_p.DE&quot;, &quot;AXP.N&quot;, &quot;IBM.N&quot;, &quot;U...
+## $ `Company Common Name`     &lt;chr&gt; &quot;Deere &amp; Co&quot;, &quot;Volkswagen AG&quot;, &quot;American ...
+## $ `Company Market Cap`      &lt;dbl&gt; 103.7590, 110.2252, 106.1041, 106.0269, 1...
+## $ `Country of Headquarters` &lt;chr&gt; &quot;United States of America&quot;, &quot;Germany&quot;, &quot;U...
+## $ `TRBC Industry Name`      &lt;chr&gt; &quot;Heavy Machinery &amp; Vehicles&quot;, &quot;Auto &amp; Tru...</code></pre>
+<pre class="r"><code>class(df_global)</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>#########
+# Rename
+########
+names(df_global)</code></pre>
+<pre><code>## [1] &quot;Updated at 19:02:34&quot;     &quot;Company Common Name&quot;    
+## [3] &quot;Company Market Cap&quot;      &quot;Country of Headquarters&quot;
+## [5] &quot;TRBC Industry Name&quot;</code></pre>
+<pre class="r"><code># We can use column position or name
+rename(df_global, code = 1) </code></pre>
+<pre><code>## # A tibble: 157 x 5
+##    code   `Company Common N~ `Company Market ~ `Country of Hea~ `TRBC Industry ~
+##    &lt;chr&gt;  &lt;chr&gt;                          &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;           
+##  1 DE.N   Deere &amp; Co                      104. United States o~ Heavy Machinery~
+##  2 VOWG_~ Volkswagen AG                   110. Germany          Auto &amp; Truck Ma~
+##  3 AXP.N  American Express ~              106. United States o~ Consumer Lending
+##  4 IBM.N  International Bus~              106. United States o~ IT Services &amp; C~
+##  5 UNP.N  Union Pacific Corp              140. United States o~ Ground Freight ~
+##  6 AAPL.~ Apple Inc                      2180. United States o~ Phones &amp; Handhe~
+##  7 MCD.N  Mcdonald&#39;s Corp                 158. United States o~ Restaurants &amp; B~
+##  8 NKE.N  Nike Inc                        224. United States o~ Footwear        
+##  9 TSLA.~ Tesla Inc                       750. United States o~ Auto &amp; Truck Ma~
+## 10 PRX.AS Prosus NV                       212. Netherlands      Online Services 
+## # ... with 147 more rows</code></pre>
+<pre class="r"><code>rename(df_global, mcap = &quot;Company Market Cap&quot;) </code></pre>
+<pre><code>## # A tibble: 157 x 5
+##    `Updated at 19:0~ `Company Common N~  mcap `Country of Head~ `TRBC Industry ~
+##    &lt;chr&gt;             &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           
+##  1 DE.N              Deere &amp; Co          104. United States of~ Heavy Machinery~
+##  2 VOWG_p.DE         Volkswagen AG       110. Germany           Auto &amp; Truck Ma~
+##  3 AXP.N             American Express ~  106. United States of~ Consumer Lending
+##  4 IBM.N             International Bus~  106. United States of~ IT Services &amp; C~
+##  5 UNP.N             Union Pacific Corp  140. United States of~ Ground Freight ~
+##  6 AAPL.OQ           Apple Inc          2180. United States of~ Phones &amp; Handhe~
+##  7 MCD.N             Mcdonald&#39;s Corp     158. United States of~ Restaurants &amp; B~
+##  8 NKE.N             Nike Inc            224. United States of~ Footwear        
+##  9 TSLA.OQ           Tesla Inc           750. United States of~ Auto &amp; Truck Ma~
+## 10 PRX.AS            Prosus NV           212. Netherlands       Online Services 
+## # ... with 147 more rows</code></pre>
+<pre class="r"><code># Does anything get stored?
+# Nothing gets stored; you just see output
+df_global2 &lt;- rename(df_global, mcap = 3)# now check!
+
+###############################
+# Many variables to be renamed?
+###############################
+# Pipe operator: %&gt;% 
+# Windows: ctrl + shift + m
+# Mac: cmd + shift + m
+names(df_global)# Let&#39;s check the names again</code></pre>
+<pre><code>## [1] &quot;Updated at 19:02:34&quot;     &quot;Company Common Name&quot;    
+## [3] &quot;Company Market Cap&quot;      &quot;Country of Headquarters&quot;
+## [5] &quot;TRBC Industry Name&quot;</code></pre>
+<pre class="r"><code>df_global %&gt;% 
+  rename(code = 1,
+         cname = &quot;Company Common Name&quot;,
+         mcap = &quot;Company Market Cap&quot;,
+         country = &quot;Country of Headquarters&quot;,
+         industry = &quot;TRBC Industry Name&quot;)</code></pre>
+<pre><code>## # A tibble: 157 x 5
+##    code     cname                     mcap country           industry           
+##    &lt;chr&gt;    &lt;chr&gt;                    &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;              
+##  1 DE.N     Deere &amp; Co                104. United States of~ Heavy Machinery &amp; ~
+##  2 VOWG_p.~ Volkswagen AG             110. Germany           Auto &amp; Truck Manuf~
+##  3 AXP.N    American Express Co       106. United States of~ Consumer Lending   
+##  4 IBM.N    International Business ~  106. United States of~ IT Services &amp; Cons~
+##  5 UNP.N    Union Pacific Corp        140. United States of~ Ground Freight &amp; L~
+##  6 AAPL.OQ  Apple Inc                2180. United States of~ Phones &amp; Handheld ~
+##  7 MCD.N    Mcdonald&#39;s Corp           158. United States of~ Restaurants &amp; Bars 
+##  8 NKE.N    Nike Inc                  224. United States of~ Footwear           
+##  9 TSLA.OQ  Tesla Inc                 750. United States of~ Auto &amp; Truck Manuf~
+## 10 PRX.AS   Prosus NV                 212. Netherlands       Online Services    
+## # ... with 147 more rows</code></pre>
+<pre class="r"><code># store it as df_global
+df_global &lt;- df_global %&gt;% 
+  rename(code = 1,
+         cname = &quot;Company Common Name&quot;,
+         mcap = &quot;Company Market Cap&quot;,
+         country = &quot;Country of Headquarters&quot;,
+         industry = &quot;TRBC Industry Name&quot;)
+# remove df_global2
+rm(df_global2)
+######################
+# How many industries?
+######################
+table(df_global$industry)</code></pre>
+<pre><code>## 
+##             Advanced Medical Equipment &amp; Technology 
+##                                                   2 
+##                                 Aerospace &amp; Defense 
+##                                                   2 
+##                        Airport Operators &amp; Services 
+##                                                   1 
+##                               Apparel &amp; Accessories 
+##                                                   3 
+##                     Apparel &amp; Accessories Retailers 
+##                                                   1 
+##                      Appliances, Tools &amp; Housewares 
+##                                                   1 
+##                          Auto &amp; Truck Manufacturers 
+##                                                   4 
+##                                               Banks 
+##                                                  15 
+##                                             Brewers 
+##                                                   1 
+##                                        Broadcasting 
+##                                                   2 
+##                           Business Support Services 
+##                                                   1 
+##                                 Commodity Chemicals 
+##                                                   1 
+##                         Communications &amp; Networking 
+##                                                   1 
+##                        Consumer Goods Conglomerates 
+##                                                   5 
+##                                    Consumer Lending 
+##                                                   1 
+## Courier, Postal, Air Freight &amp; Land-based Logistics 
+##                                                   1 
+##                                   Department Stores 
+##                                                   2 
+##                                     Discount Stores 
+##                                                   1 
+##                               Distillers &amp; Wineries 
+##                                                   2 
+##                                  Diversified Mining 
+##                                                   4 
+##                                  Electric Utilities 
+##                                                   2 
+##                   Electrical Components &amp; Equipment 
+##                                                   2 
+##                                     Food Processing 
+##                                                   1 
+##                          Food Retail &amp; Distribution 
+##                                                   1 
+##                                            Footwear 
+##                                                   1 
+##                          Ground Freight &amp; Logistics 
+##                                                   1 
+##                          Heavy Machinery &amp; Vehicles 
+##                                                   2 
+##      Home Improvement Products &amp; Services Retailers 
+##                                                   2 
+##                               Household Electronics 
+##                                                   1 
+##                                Integrated Oil &amp; Gas 
+##                                                   4 
+##              Integrated Telecommunications Services 
+##                                                   3 
+##             Investment Banking &amp; Brokerage Services 
+##                                                   3 
+##              Investment Management &amp; Fund Operators 
+##                                                   1 
+##                            IT Services &amp; Consulting 
+##                                                   4 
+##                             Life &amp; Health Insurance 
+##                                                   3 
+##                                  Managed Healthcare 
+##                                                   1 
+##          Medical Equipment, Supplies &amp; Distribution 
+##                                                   2 
+##                             Non-Alcoholic Beverages 
+##                                                   2 
+##                                                NULL 
+##                                                   6 
+##                    Oil &amp; Gas Refining and Marketing 
+##                                                   3 
+##                                     Online Services 
+##                                                  16 
+##                                   Personal Products 
+##                                                   4 
+##                                     Pharmaceuticals 
+##                                                  12 
+##                           Phones &amp; Handheld Devices 
+##                                                   2 
+##                                Real Estate Services 
+##                                                   1 
+##                                  Restaurants &amp; Bars 
+##                                                   2 
+##                   Semiconductor Equipment &amp; Testing 
+##                                                   2 
+##                                      Semiconductors 
+##                                                   8 
+##                                            Software 
+##                                                   8 
+##                                   Specialized REITs 
+##                                                   1 
+##                                             Tobacco 
+##                                                   1 
+##                Wireless Telecommunications Services 
+##                                                   4</code></pre>
+<pre class="r"><code>#################################################################
+# Get data for only Pharmaceuticals; Lowest &amp; Largest Market Cap
+#################################################################
+df_global %&gt;% 
+  filter(industry == &quot;Pharmaceuticals&quot;)</code></pre>
+<pre><code>## # A tibble: 12 x 5
+##    code     cname                    mcap country                 industry      
+##    &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;                   &lt;chr&gt;         
+##  1 AZN.L    AstraZeneca PLC          133. United Kingdom          Pharmaceutica~
+##  2 NOVOb.CO Novo Nordisk A/S         134. Denmark                 Pharmaceutica~
+##  3 MRK.N    Merck &amp; Co Inc           188. United States of Ameri~ Pharmaceutica~
+##  4 LLY.N    Eli Lilly and Co         193. United States of Ameri~ Pharmaceutica~
+##  5 AMGN.OQ  Amgen Inc                134. United States of Ameri~ Pharmaceutica~
+##  6 BMY.N    Bristol-Myers Squibb Co  136. United States of Ameri~ Pharmaceutica~
+##  7 SASY.PA  Sanofi SA                117. France                  Pharmaceutica~
+##  8 ABBV.N   Abbvie Inc               185. United States of Ameri~ Pharmaceutica~
+##  9 NOVN.S   Novartis AG              218. Switzerland             Pharmaceutica~
+## 10 ROG.S    Roche Holding AG         293. Switzerland             Pharmaceutica~
+## 11 PFE.N    Pfizer Inc               191. United States of Ameri~ Pharmaceutica~
+## 12 JNJ.N    Johnson &amp; Johnson        429. United States of Ameri~ Pharmaceutica~</code></pre>
+<pre class="r"><code># Lowest Market Cap; use arrange()
+df_global %&gt;% 
+  filter(industry == &quot;Pharmaceuticals&quot;) %&gt;% 
+  arrange(mcap)</code></pre>
+<pre><code>## # A tibble: 12 x 5
+##    code     cname                    mcap country                 industry      
+##    &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;                   &lt;chr&gt;         
+##  1 SASY.PA  Sanofi SA                117. France                  Pharmaceutica~
+##  2 AZN.L    AstraZeneca PLC          133. United Kingdom          Pharmaceutica~
+##  3 AMGN.OQ  Amgen Inc                134. United States of Ameri~ Pharmaceutica~
+##  4 NOVOb.CO Novo Nordisk A/S         134. Denmark                 Pharmaceutica~
+##  5 BMY.N    Bristol-Myers Squibb Co  136. United States of Ameri~ Pharmaceutica~
+##  6 ABBV.N   Abbvie Inc               185. United States of Ameri~ Pharmaceutica~
+##  7 MRK.N    Merck &amp; Co Inc           188. United States of Ameri~ Pharmaceutica~
+##  8 PFE.N    Pfizer Inc               191. United States of Ameri~ Pharmaceutica~
+##  9 LLY.N    Eli Lilly and Co         193. United States of Ameri~ Pharmaceutica~
+## 10 NOVN.S   Novartis AG              218. Switzerland             Pharmaceutica~
+## 11 ROG.S    Roche Holding AG         293. Switzerland             Pharmaceutica~
+## 12 JNJ.N    Johnson &amp; Johnson        429. United States of Ameri~ Pharmaceutica~</code></pre>
+<pre class="r"><code># Largest
+df_global %&gt;% 
+  filter(industry == &quot;Pharmaceuticals&quot;) %&gt;% 
+  arrange(- mcap) # or arrange(desc(mcap))</code></pre>
+<pre><code>## # A tibble: 12 x 5
+##    code     cname                    mcap country                 industry      
+##    &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;                   &lt;chr&gt;         
+##  1 JNJ.N    Johnson &amp; Johnson        429. United States of Ameri~ Pharmaceutica~
+##  2 ROG.S    Roche Holding AG         293. Switzerland             Pharmaceutica~
+##  3 NOVN.S   Novartis AG              218. Switzerland             Pharmaceutica~
+##  4 LLY.N    Eli Lilly and Co         193. United States of Ameri~ Pharmaceutica~
+##  5 PFE.N    Pfizer Inc               191. United States of Ameri~ Pharmaceutica~
+##  6 MRK.N    Merck &amp; Co Inc           188. United States of Ameri~ Pharmaceutica~
+##  7 ABBV.N   Abbvie Inc               185. United States of Ameri~ Pharmaceutica~
+##  8 BMY.N    Bristol-Myers Squibb Co  136. United States of Ameri~ Pharmaceutica~
+##  9 NOVOb.CO Novo Nordisk A/S         134. Denmark                 Pharmaceutica~
+## 10 AMGN.OQ  Amgen Inc                134. United States of Ameri~ Pharmaceutica~
+## 11 AZN.L    AstraZeneca PLC          133. United Kingdom          Pharmaceutica~
+## 12 SASY.PA  Sanofi SA                117. France                  Pharmaceutica~</code></pre>
+<pre class="r"><code>##############################
+# keep only required variables
+##############################
+# suppose we only need cname and mcap
+df_global %&gt;% 
+  select(cname, mcap)</code></pre>
+<pre><code>## # A tibble: 157 x 2
+##    cname                                 mcap
+##    &lt;chr&gt;                                &lt;dbl&gt;
+##  1 Deere &amp; Co                            104.
+##  2 Volkswagen AG                         110.
+##  3 American Express Co                   106.
+##  4 International Business Machines Corp  106.
+##  5 Union Pacific Corp                    140.
+##  6 Apple Inc                            2180.
+##  7 Mcdonald&#39;s Corp                       158.
+##  8 Nike Inc                              224.
+##  9 Tesla Inc                             750.
+## 10 Prosus NV                             212.
+## # ... with 147 more rows</code></pre>
+<pre class="r"><code>#################
+#     Stats
+################
+mean(df_global$mcap)</code></pre>
+<pre><code>## [1] 265.5769</code></pre>
+<pre class="r"><code>median(df_global$mcap)</code></pre>
+<pre><code>## [1] 158.7241</code></pre>
+<pre class="r"><code>min(df_global$mcap)</code></pre>
+<pre><code>## [1] 100.5566</code></pre>
+<pre class="r"><code>max(df_global$mcap)</code></pre>
+<pre><code>## [1] 2180.27</code></pre>
+<pre class="r"><code>summary(df_global$mcap)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   100.6   121.7   158.7   265.6   233.6  2180.3</code></pre>
+<pre class="r"><code>summary(df_global)# whole data frame</code></pre>
+<pre><code>##      code              cname                mcap          country         
+##  Length:157         Length:157         Min.   : 100.6   Length:157        
+##  Class :character   Class :character   1st Qu.: 121.7   Class :character  
+##  Mode  :character   Mode  :character   Median : 158.7   Mode  :character  
+##                                        Mean   : 265.6                     
+##                                        3rd Qu.: 233.6                     
+##                                        Max.   :2180.3                     
+##    industry        
+##  Length:157        
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+## </code></pre>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2>Exercises</h2>
+<p>Always inspect the file!</p>
+<div id="exercise-1" class="section level4">
+<h4>Exercise 1</h4>
+<p><strong>File</strong>: <em>mcap20210221.xlsx</em>; <strong>Sheet</strong>: <em>global100b</em></p>
+<div id="questions" class="section level5">
+<h5>Questions</h5>
+<ol style="list-style-type: decimal">
+<li>Largest firm?</li>
+<li>Create a new data frame <code>df_banks</code>, containing banks only.
+<ul>
+<li>Largest bank?</li>
+<li>Find summary statistics</li>
+<li>Which country has the largest share?</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="exercise-2" class="section level3">
+<h3>Exercise 2</h3>
+<p><strong>File</strong>: <em>mcap20210221.xlsx</em>; <strong>Sheet</strong>: <em>pt</em></p>
+<ul>
+<li>Store it as <code>df_pt</code></li>
+<li>Use the same names e.g. mcap is Company Market Cap</li>
+</ul>
+<div id="questions-1" class="section level5">
+<h5>Questions</h5>
+<ol style="list-style-type: decimal">
+<li>Largest firm?</li>
+<li>Create a new data frame <code>df_pt_leisure</code>, containing firms that are in <em>Leisure &amp; Recreation</em> industry
+<ul>
+<li>Largest firm?</li>
+<li>Smallest firm?</li>
+<li>Find summary statistics</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

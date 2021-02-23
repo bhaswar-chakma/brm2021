@@ -1,0 +1,3 @@
+id	name	grade	course
+7821	Joe Biden	18	BRM
+2093	Kamala Harris	19	BRM

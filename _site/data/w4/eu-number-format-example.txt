@@ -1,0 +1,3 @@
+Program;fee
+MBA;80.000,56
+PhD;50,98

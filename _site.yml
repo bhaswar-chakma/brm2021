@@ -10,6 +10,10 @@ navbar:
       href: week1.html
     - text: "Week 2"
       href: week2.html
+    - text: "Week 3"
+      href: week3.html
+    - text: "Week 4"
+      href: week4.html
 
 output:
   html_document:

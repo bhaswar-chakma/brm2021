@@ -1,0 +1,12 @@
+---
+title: "Week 3"
+date: "16 Feb 2021"
+author: "Bhaswar Chakma"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+- Carnival Holiday: No Class
+- Videos Released

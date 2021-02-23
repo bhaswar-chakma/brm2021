@@ -5,6 +5,13 @@ Last Updated: `r lubridate::today()`
 
 -------------------------------------------------
 
+### Join Class
+
+- [**Teams**](https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3A74dc309fc8aa4e6cbd97f6fbd7ab8e0b%40thread.tacv2%2F1613646449626%3Fcontext%3D%257B%2522Tid%2522%253A%2522b3e38b18-ba39-42b1-ac1a-3725b548a1ba%2522%252C%2522Oid%2522%253A%2522e029f01e-2938-4362-afb4-79f8fd9d06e4%2522%257D%26anon%3Dtrue&type=meetup-join&deeplinkId=4b704bc3-c674-431a-b52c-31ffe6801f22&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true)
+
+- [Backup Zoom Link](https://videoconf-colibri.zoom.us/j/83732635452?pwd=UjJPRVZvNU02d1UzUTB4bTA3Vm0xUT09) 
+
+
 ### Announcement
 
 **Starting from next class (23 Feb), I will take class using Teams.**
