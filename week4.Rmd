@@ -228,9 +228,9 @@ summary(df_global)# whole data frame
 
 ## Exercises
 
-Always inspect the file!
+**Always inspect the file!**
 
-#### Exercise 1
+### Exercise 1
 
 **File**: *mcap20210221.xlsx*; **Sheet**: *global100b*
 
