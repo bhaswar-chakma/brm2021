@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Bhaswar Chakma" />
+
+<meta name="date" content="2021-03-02" />
+
+<title>Week 5</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Research Methods</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="videos.html">Video Tutorials</a>
+</li>
+<li>
+  <a href="week1.html">Week 1</a>
+</li>
+<li>
+  <a href="week2.html">Week 2</a>
+</li>
+<li>
+  <a href="week3.html">Week 3</a>
+</li>
+<li>
+  <a href="week4.html">Week 4</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Week 5</h1>
+<h4 class="author">Bhaswar Chakma</h4>
+<h4 class="date">02 March 2021</h4>
+
+</div>
+
+
+<div id="section" class="section level2 tabset">
+<h2></h2>
+<div id="objectives" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>dplyr::Grammar of Data Manipulation
+<ul>
+<li>Five key verbs</li>
+<li>Learn about data structures along the way</li>
+</ul></li>
+</ul>
+<p>See <a href="https://af-ucp.courses/introR/dplyr.html" class="uri">https://af-ucp.courses/introR/dplyr.html</a> for details.</p>
+</div>
+<div id="dplyr" class="section level3">
+<h3>dplyr</h3>
+<div id="grammar-of-data-manipulation" class="section level4">
+<h4>Grammar of Data Manipulation</h4>
+<p><img src="https://dplyr.tidyverse.org/logo.png" style="display: block; margin: auto;" /></p>
+<p><span style="color: blue;"><strong>Five Verbs:</strong></span></p>
+<ol style="list-style-type: decimal">
+<li><code>select()</code> picks variables based on their names.</li>
+<li><code>mutate()</code> adds new variables that are functions of existing variables</li>
+<li><code>filter()</code> picks cases based on their values.</li>
+<li><code>summarise()</code> reduces multiple values down to a single summary.</li>
+<li><code>arrange()</code> changes the ordering of the rows.</li>
+</ol>
+</div>
+<div id="example" class="section level4">
+<h4><strong>Example</strong></h4>
+<p>Data: <a href="https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EtziHFqAtc5BsmTvQ1nc9XIBP8d6H9_ns-vNPvMzCwjQ3g?e=C5Dwv4">Click here to download</a> or check in Teams/Files.</p>
+<p><strong>Prepare Data</strong></p>
+<p><span style="color: blue;"><em>Step 1: Create/Open RStudio Project</em></span></p>
+<p><span style="color: blue;"><em>Step 2: Read the Excel file <code>w5-simple.xlsx</code>; store it as <code>df_simple</code></em></span></p>
+<pre class="r"><code>library(dplyr)
+library(readxl)
+df_simple &lt;- read_excel(&quot;data/w5/w5-simple.xlsx&quot;)
+df_simple</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="right">Age</th>
+<th align="left">Gender</th>
+<th align="left">Course</th>
+<th align="right">Grade</th>
+<th align="left">Born In the U.S.A.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;"><em>Step 3: Rename</em></span></p>
+<p>Use <code>rename()</code> and the pipe operator <code>%&gt;%</code></p>
+<p>Keyboard shortcut for <code>%&gt;%</code>:</p>
+<ul>
+<li>Windows: <code>Ctrl+Shift+M</code></li>
+<li>Mac: <code>Cmd+Shift+M</code></li>
+</ul>
+<pre class="r"><code>df_simple &lt;- df_simple %&gt;% 
+  rename(name = Name,
+         age = Age,
+         gender = Gender,
+         course = Course,
+         grade = Grade,
+         us_born = &quot;Born In the U.S.A.&quot;)
+df_simple</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="section-1" class="section level4 tabset">
+<h4></h4>
+<div id="select" class="section level5">
+<h5><em><code>select()</code></em></h5>
+<p><strong>Problem:</strong> <span style="color: blue;"><em>Suppose we want to drop the variable <code>course</code></em></span></p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><span style="color: blue;"><em>We could select the other variables</em></span></li>
+</ul>
+<pre><code># by supplying the variable names
+df_simple %&gt;%
+  select(name, age, gender, grade, us_born)</code></pre>
+<p>or</p>
+<pre><code># by supplying positions
+df_simple %&gt;%
+  select(1, 2, 3, 5, 6)</code></pre>
+<p>or</p>
+<pre><code># by supplying positions(another way)
+df_simple %&gt;%
+  select(1:3, 5:6)</code></pre>
+<ul>
+<li><span style="color: blue;"><em>We could directly drop it</em></span></li>
+</ul>
+<pre><code>df_simple %&gt;% 
+  select(!course) # ! stands for &quot;not&quot;</code></pre>
+<p>or</p>
+<pre><code>df_simple %&gt;% 
+  select(- course) </code></pre>
+<p>There are many more options!</p>
+</div>
+<div id="mutate" class="section level5">
+<h5><em><code>mutate()</code></em></h5>
+<p><strong>Problem:</strong> <span style="color: blue;"><em>Suppose we want to find percentage grades(currently grades are given out of 20). How to create such variable? For example, <span class="math inline">\(\frac{18}{20}\)</span> becomes <span class="math inline">\(90\)</span>.</em></span></p>
+<p><strong>Solution:</strong></p>
+<p>Let’s call the new variable <code>grade_p</code></p>
+<pre class="r"><code>df_simple %&gt;% 
+  mutate(grade_p = grade/20*100)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+<th align="right">grade_p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+<td align="right">90</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+<td align="right">95</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+<td align="right">40</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+<td align="right">50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="filter" class="section level5">
+<h5><em><code>filter()</code></em></h5>
+<p>Let’s have a <code>glimpse()</code> of our data frame <code>df_simple</code>!</p>
+<pre class="r"><code>glimpse(df_simple) # you can also use str(df_simple)</code></pre>
+<pre><code>## Rows: 5
+## Columns: 6
+## $ name    &lt;chr&gt; &quot;Ted Mosby&quot;, &quot;Marshall Eriksen&quot;, &quot;Robin Scherbatsky&quot;, &quot;Barn...
+## $ age     &lt;dbl&gt; 46, 41, 38, 47, 46
+## $ gender  &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;
+## $ course  &lt;chr&gt; &quot;BRM&quot;, &quot;BRM&quot;, &quot;BRM&quot;, &quot;BRM&quot;, &quot;BRM&quot;
+## $ grade   &lt;dbl&gt; 18, 19, 12, 8, 10
+## $ us_born &lt;lgl&gt; TRUE, TRUE, FALSE, TRUE, TRUE</code></pre>
+<p><strong>Problem 1:</strong> <span style="color: blue;"><em>Suppose we want to find out who are older than 45.</em></span></p>
+<p><strong>Solution 1:</strong></p>
+<pre class="r"><code>df_simple %&gt;% 
+  filter(age &gt; 45)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Problem 2:</strong> <span style="color: blue;"><em>Suppose we want to consider females only.</em></span></p>
+<p><strong>Solution 2:</strong></p>
+<pre class="r"><code>df_simple %&gt;% 
+  filter(gender == &quot;Female&quot;) # or filter(gender != &quot;Male&quot;)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Problem 3:</strong> <span style="color: blue;"><em>Suppose we want to find out who was(were) not born in the US.</em></span></p>
+<p><strong>Solution 3:</strong></p>
+<pre class="r"><code>df_simple %&gt;% 
+  filter(us_born == FALSE) # filter(us_born != TRUE)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;"><strong>Logical Operators:</strong></span></p>
+<table>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;</td>
+<td>less than</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td>less than or equal to</td>
+</tr>
+<tr class="odd">
+<td>&gt;</td>
+<td>greater than</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td>exactly equal to</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>not equal to</td>
+</tr>
+<tr class="odd">
+<td>!x</td>
+<td>not x</td>
+</tr>
+<tr class="even">
+<td>x | y</td>
+<td>x or y</td>
+</tr>
+<tr class="odd">
+<td>x &amp; y</td>
+<td>x and y</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="summarise" class="section level5">
+<h5><em><code>summarise()</code></em></h5>
+<p><strong>Problem 1:</strong> Suppose we want to find mean and median grades.</p>
+<p><strong>Solution:</strong></p>
+<pre class="r"><code>df_simple %&gt;% 
+  summarise(mean_grade = mean(grade),
+            median_grade = median(grade))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">mean_grade</th>
+<th align="right">median_grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">13.4</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;">NOTE: <code>summarise</code> creates a new data frame (of course, to store it, you need to ask your best friend – the assignment operator!)</span></p>
+<p><strong>Problem 2:</strong> Suppose we want to find mean and median grades by <strong><code>gender</code></strong>.</p>
+<p><strong>Solution:</strong></p>
+<p>To do so, we need to use <code>group_by()</code> before <code>summarise()</code>.</p>
+<pre class="r"><code>df_simple %&gt;% 
+  group_by(gender) %&gt;% 
+  summarise(mean_grade = mean(grade),
+            median_grade = median(grade))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">gender</th>
+<th align="right">mean_grade</th>
+<th align="right">median_grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Female</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">Male</td>
+<td align="right">15</td>
+<td align="right">18</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;"><strong>Useful Functions:</strong></span></p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it Calculates</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mean()</td>
+<td>Mean</td>
+</tr>
+<tr class="even">
+<td>median()</td>
+<td>Median</td>
+</tr>
+<tr class="odd">
+<td>var()</td>
+<td>Variance</td>
+</tr>
+<tr class="even">
+<td>sd()</td>
+<td>Standard deviation</td>
+</tr>
+<tr class="odd">
+<td>min()</td>
+<td>Minimum</td>
+</tr>
+<tr class="even">
+<td>max()</td>
+<td>Maximum</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="arrange" class="section level5">
+<h5><em><code>arrange()</code></em></h5>
+<p><code>arrange()</code> orders the rows of a data frame by the values of selected column(s).</p>
+<ul>
+<li><span style="color: blue;"><strong>use <code>desc()</code> or <code>-</code> for descending order</strong></span></li>
+</ul>
+<blockquote>
+<p><strong>Example (single column): sort name</strong></p>
+</blockquote>
+<pre class="r"><code>df_simple %&gt;% 
+  arrange(name)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>df_simple %&gt;% 
+  arrange(desc(name))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Example (multiple columns): sort gender then sort name</strong></p>
+</blockquote>
+<pre class="r"><code>df_simple %&gt;% 
+  arrange(gender, name) # try using desc()</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;"><strong>Unlike other <code>dplyr</code> verbs, <code>arrange()</code> largely ignores grouping; you need to explicitly mention grouping variables (or use <code>.by_group = TRUE</code>)</strong> </span></p>
+<ul>
+<li>Suppose our data frame <code>df_simple</code> is grouped by <code>gender</code>
+<ul>
+<li><code>df_simple &lt;- df_simple %&gt;% group_by(gender)</code></li>
+</ul></li>
+</ul>
+<pre class="r"><code>df_simple &lt;- df_simple %&gt;% 
+  group_by(gender)
+glimpse(df_simple)</code></pre>
+<pre><code>## Rows: 5
+## Columns: 6
+## Groups: gender [2]
+## $ name    &lt;chr&gt; &quot;Ted Mosby&quot;, &quot;Marshall Eriksen&quot;, &quot;Robin Scherbatsky&quot;, &quot;Barn...
+## $ age     &lt;dbl&gt; 46, 41, 38, 47, 46
+## $ gender  &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;
+## $ course  &lt;chr&gt; &quot;BRM&quot;, &quot;BRM&quot;, &quot;BRM&quot;, &quot;BRM&quot;, &quot;BRM&quot;
+## $ grade   &lt;dbl&gt; 18, 19, 12, 8, 10
+## $ us_born &lt;lgl&gt; TRUE, TRUE, FALSE, TRUE, TRUE</code></pre>
+<ul>
+<li><code>df_simple %&gt;% arrange(name)</code> will <span style="color: red;"><strong>not</strong></span> take grouping into account</li>
+</ul>
+<pre class="r"><code>df_simple %&gt;% 
+  arrange(name)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>you need to use <code>df_simple_grouped %&gt;% arrange(name,</code> <span style="color: blue;"><strong><code>.by_group = TRUE</code></strong></span> )</li>
+</ul>
+<pre class="r"><code>df_simple %&gt;% 
+  arrange(name, .by_group = TRUE)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;"><strong>To ungroup, use <code>ungroup()</code></strong> </span></p>
+<ul>
+<li><code>df_simple %&gt;% ungroup()</code> will do the job</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

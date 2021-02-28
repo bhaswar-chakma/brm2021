@@ -15,6 +15,7 @@ navbar:
     - text: "Week 4"
       href: week4.html
 
+
 output:
   html_document:
     theme: cosmo

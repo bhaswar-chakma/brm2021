@@ -1,0 +1,305 @@
+---
+title: "Week 5"
+date: "02 March 2021"
+author: "Bhaswar Chakma"
+output:
+  html_document:
+    code_folding: hide
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
+```
+
+## {.tabset}
+
+### Objectives
+
+- dplyr::Grammar of Data Manipulation
+    - Five key verbs
+    - Learn about data structures along the way
+
+See <https://af-ucp.courses/introR/dplyr.html> for details.
+
+### dplyr
+
+#### Grammar of Data Manipulation 
+
+```{r logo-dplyr, echo = FALSE, fig.align='center'}
+knitr::include_graphics("https://dplyr.tidyverse.org/logo.png")
+```
+
+
+<span style="color: blue;">**Five Verbs:**</span>
+    
+  1. `select()` picks variables based on their names.
+  2. `mutate()` adds new variables that are functions of existing variables
+  3. `filter()` picks cases based on their values.
+  4. `summarise()` reduces multiple values down to a single summary.
+  5. `arrange()` changes the ordering of the rows.
+
+
+
+#### **Example**
+
+Data: [Click here to download](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EtziHFqAtc5BsmTvQ1nc9XIBP8d6H9_ns-vNPvMzCwjQ3g?e=C5Dwv4) or check in Teams/Files.
+
+**Prepare Data**
+
+<span style="color: blue;">*Step 1: Create/Open RStudio Project*</span> 
+
+<span style="color: blue;">*Step 2: Read the Excel file `w5-simple.xlsx`; store it as `df_simple`*</span> 
+
+
+```{r, echo = TRUE}
+library(dplyr)
+library(readxl)
+df_simple <- read_excel("data/w5/w5-simple.xlsx")
+df_simple
+```
+
+<span style="color: blue;">*Step 3: Rename*</span>
+
+Use `rename()` and the pipe operator `%>%`
+
+Keyboard shortcut for `%>%`:
+
+  - Windows: `Ctrl+Shift+M `
+  - Mac: `Cmd+Shift+M `
+
+```{r rename, echo = TRUE}
+df_simple <- df_simple %>% 
+  rename(name = Name,
+         age = Age,
+         gender = Gender,
+         course = Course,
+         grade = Grade,
+         us_born = "Born In the U.S.A.")
+df_simple
+```
+
+#### {.tabset}
+
+##### *`select()`*
+
+
+**Problem:** <span style="color: blue;">*Suppose we want to drop the variable `course`*</span>
+
+
+**Solution:**
+
+- <span style="color: blue;">*We could select the other variables*</span>
+
+```
+# by supplying the variable names
+df_simple %>%
+  select(name, age, gender, grade, us_born)
+```
+or
+
+```
+# by supplying positions
+df_simple %>%
+  select(1, 2, 3, 5, 6)
+```
+or
+
+```
+# by supplying positions(another way)
+df_simple %>%
+  select(1:3, 5:6)
+```
+
+- <span style="color: blue;">*We could directly drop it*</span>
+
+
+```
+df_simple %>% 
+  select(!course) # ! stands for "not"
+```
+
+or 
+
+
+```
+df_simple %>% 
+  select(- course) 
+```
+
+There are many more options!
+
+##### *`mutate()`*
+
+**Problem:** <span style="color: blue;">*Suppose we want to find percentage grades(currently grades are given out of 20). How to create such variable? For example, $\frac{18}{20}$ becomes $90$.*</span>
+
+
+**Solution:**
+
+Let's call the new variable `grade_p`
+
+```{r example-mutate}
+df_simple %>% 
+  mutate(grade_p = grade/20*100)
+```
+
+
+##### *`filter()`*
+
+Let's have a `glimpse()` of our data frame `df_simple`!
+
+```{r}
+glimpse(df_simple) # you can also use str(df_simple)
+```
+
+
+
+
+**Problem 1:** <span style="color: blue;">*Suppose we want to find out who are older than 45.*</span>
+
+
+
+**Solution 1:**
+```{r}
+df_simple %>% 
+  filter(age > 45)
+```
+
+**Problem 2:** <span style="color: blue;">*Suppose we want to consider females only.*</span>
+
+
+**Solution 2:**
+
+
+```{r ex2-fil}
+df_simple %>% 
+  filter(gender == "Female") # or filter(gender != "Male")
+```
+
+**Problem 3:** <span style="color: blue;">*Suppose we want to find out who was(were) not born in the US.*</span>
+
+
+**Solution 3:**
+
+```{r}
+df_simple %>% 
+  filter(us_born == FALSE) # filter(us_born != TRUE)
+```
+
+
+<span style="color: blue;">**Logical Operators:**</span>
+
+| Code   | Description              |
+|--------|--------------------------|
+| <      | less than                |
+| <=     | less than or equal to    |
+| >      | greater than             |
+| >=     | greater than or equal to |
+| ==     | exactly equal to         |
+| !=     | not equal to             |
+| !x     | not x                    |
+| x \| y | x or y                   |
+| x & y  | x and y                  |
+
+##### *`summarise()`*
+
+**Problem 1:** Suppose we want to find mean and median grades.
+
+**Solution:**
+
+```{r}
+df_simple %>% 
+  summarise(mean_grade = mean(grade),
+            median_grade = median(grade))
+```
+<span style="color: blue;">NOTE: `summarise` creates a new data frame (of course, to store it, you need to ask your best friend -- the assignment operator!)</span>
+
+
+**Problem 2:** Suppose we want to find mean and median grades by **`gender`**.
+
+**Solution:**
+
+To do so, we need to use `group_by()` before `summarise()`.
+
+```{r}
+df_simple %>% 
+  group_by(gender) %>% 
+  summarise(mean_grade = mean(grade),
+            median_grade = median(grade))
+```
+
+
+<span style="color: blue;">**Useful Functions:**</span>
+
+| Function | What it Calculates  |
+|----------|---------------------|
+| mean()   | Mean                |
+| median() | Median              |
+| var()    | Variance            |
+| sd()     | Standard deviation  |
+| min()    | Minimum             |
+| max()    | Maximum       |
+
+
+##### *`arrange()`*
+
+`arrange()` orders the rows of a data frame by the values of selected column(s).
+  
+  - <span style="color: blue;">**use `desc()` or `-` for descending order**</span> 
+
+> **Example (single column): sort name**
+
+```{r}
+df_simple %>% 
+  arrange(name)
+```
+
+```{r}
+df_simple %>% 
+  arrange(desc(name))
+```
+
+> **Example (multiple columns): sort gender then sort name**
+
+```{r}
+df_simple %>% 
+  arrange(gender, name) # try using desc()
+```
+
+
+<span style="color: blue;">**Unlike other `dplyr` verbs, `arrange()` largely ignores grouping; you need to explicitly mention grouping variables (or use `.by_group = TRUE`)** </span>
+
+
+- Suppose our data frame `df_simple` is grouped by `gender`
+    - `df_simple <- df_simple %>% group_by(gender)`
+
+```{r}
+df_simple <- df_simple %>% 
+  group_by(gender)
+glimpse(df_simple)
+
+```
+
+- `df_simple %>% arrange(name)` will <span style="color: red;">**not**</span> 
+ take grouping into account
+
+
+```{r}
+df_simple %>% 
+  arrange(name)
+```
+
+- you need to use `df_simple_grouped %>% arrange(name,` <span style="color: blue;">**`.by_group = TRUE`**</span> )
+
+
+```{r}
+df_simple %>% 
+  arrange(name, .by_group = TRUE)
+```
+
+<span style="color: blue;">**To ungroup, use `ungroup()`** </span>
+
+- `df_simple %>% ungroup()` will do the job
+
+
+
