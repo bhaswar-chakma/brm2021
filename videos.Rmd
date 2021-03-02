@@ -16,3 +16,16 @@ title: "Videos"
 - [Cross Reference: Section or Subsection](https://web.microsoftstream.com/video/13689057-aa3d-4c87-9303-3b39ff85b49b)
 
 
+## RStudio
+
+- [Project](https://web.microsoftstream.com/video/e1dec226-984a-4ec0-b244-e0c1abfe4939)
+
+## dplyr
+
+- [Verbs](https://web.microsoftstream.com/video/5986c61f-b97a-41a8-b5ef-1f850894d085)
+
+    - data link: <https://opendata.ecdc.europa.eu/covid19/casedistribution/csv>
+    - note:
+      - the video is old, but still relevant
+      - your numbers will be different
+      - the webpage looks different now

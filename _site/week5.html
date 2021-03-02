@@ -361,6 +361,11 @@ $(document).ready(function () {
 <li><code>summarise()</code> reduces multiple values down to a single summary.</li>
 <li><code>arrange()</code> changes the ordering of the rows.</li>
 </ol>
+<p>Before we discover how these verbs work, please fill out the form:</p>
+<ul>
+<li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUREZGQ0VOOENYU1JWU1BCNTdOTFJGU0w3Vi4u">3.30 pm class</a></li>
+<li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUOUZHWE5MVUhZS05EVlhSNURVQjdURkdYRy4u">5 pm class</a></li>
+</ul>
 </div>
 <div id="example" class="section level4">
 <h4><strong>Example</strong></h4>
@@ -1359,7 +1364,7 @@ glimpse(df_simple)</code></pre>
 <h4><span style="color: blue;"><strong>Task 4:</strong> </span> Mutate the following variables; store it as <code>df_mutated</code></h4>
 <ul>
 <li><code>portugal</code>: TRUE when country is Portugal; FALSE otherwise</li>
-<li><code>net_income_m</code>: express net_income in million USD i.e. net_income/1e9 (note: 1e6 = 1,000,000)</li>
+<li><code>net_income_m</code>: express net_income in million USD i.e. net_income/1e6 (note: 1e6 = 1,000,000)</li>
 </ul>
 </div>
 <div id="task-5-keep-only-portuguese-firms-store-it-as-df_pt" class="section level4">
@@ -1368,14 +1373,12 @@ glimpse(df_simple)</code></pre>
 <div id="task-6-grouped-by-year-find-the-following-statistics" class="section level4">
 <h4><span style="color: blue;"><strong>Task 6:</strong> </span> Grouped by year, find the following statistics</h4>
 <ul>
-<li><code>mean__m</code>: mean net_income_m</li>
+<li><code>mean_m</code>: mean net_income_m</li>
 <li><code>median_m</code>: net_income_m</li>
 <li><code>n</code>: number of observations</li>
 </ul>
 <p>Hint: you need to use <code>na.rm = TRUE</code></p>
-</div>
-<div id="final-output" class="section level4">
-<h4><strong>Final Output</strong></h4>
+<p>You should get the following output:</p>
 <div class="kable-table">
 <table>
 <thead>
@@ -1408,6 +1411,7 @@ glimpse(df_simple)</code></pre>
 </tbody>
 </table>
 </div>
+<p>Final Note: <a href="https://brmlab2021.netlify.app/videos.html">More videos have been added!</a></p>
 </div>
 </div>
 </div>

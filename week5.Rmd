@@ -40,6 +40,10 @@ knitr::include_graphics("https://dplyr.tidyverse.org/logo.png")
   5. `arrange()` changes the ordering of the rows.
 
 
+Before we discover how these verbs work, please fill out the form:
+
+- [3.30 pm class](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUREZGQ0VOOENYU1JWU1BCNTdOTFJGU0w3Vi4u)
+- [5 pm class](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUOUZHWE5MVUhZS05EVlhSNURVQjdURkdYRy4u)
 
 #### **Example**
 
@@ -357,20 +361,20 @@ The file, `dplyr-csv.csv`, we are going to use has the following variables:
 #### <span style="color: blue;">**Task 4:** </span> Mutate the following variables; store it as `df_mutated`
 
 - `portugal`: TRUE when country is Portugal; FALSE otherwise
-- `net_income_m`: express net_income in million USD i.e. net_income/1e9 (note: 1e6 = 1,000,000)
+- `net_income_m`: express net_income in million USD i.e. net_income/1e6 (note: 1e6 = 1,000,000)
 
 #### <span style="color: blue;">**Task 5:** </span> Keep only Portuguese firms; store it as `df_pt`
 
 #### <span style="color: blue;">**Task 6:** </span> Grouped by year, find the following statistics
 
-- `mean__m`: mean net_income_m
+- `mean_m`: mean net_income_m
 - `median_m`: net_income_m
 - `n`: number of observations
 
 Hint: you need to use `na.rm = TRUE`
 
 
-#### **Final Output**
+You should get the following output:
 
 ```{r, echo = FALSE}
 library(readr)
@@ -407,3 +411,4 @@ df_pt %>%
   )
 ```
 
+Final Note: [More videos have been added!](https://brmlab2021.netlify.app/videos.html)
