@@ -131,16 +131,29 @@ There are many more options!
 
 ##### *`mutate()`*
 
-**Problem:** <span style="color: blue;">*Suppose we want to find percentage grades(currently grades are given out of 20). How to create such variable? For example, $\frac{18}{20}$ becomes $90$.*</span>
+**Problem 1:** <span style="color: blue;">*Suppose we want to find percentage grades(currently grades are given out of 20). How to create such variable? For example, $\frac{18}{20}$ becomes $90$.*</span>
 
 
-**Solution:**
+**Solution 1:**
 
 Let's call the new variable `grade_p`
 
-```{r example-mutate}
+```{r example-mutate1}
 df_simple %>% 
   mutate(grade_p = grade/20*100)
+```
+
+
+**Problem 2:** <span style="color: blue;">*Robin Scherbatsky was born in Canada. Generate a new variable, `canada`: TRUE when name is Robin Scherbatsky; FALSE otherwise. *</span>
+
+
+**Solution 2:**
+
+We will use `case_when()`. Note that there are many ways to do it. We will learn about them in the coming weeks.
+```{r example-mutate2}
+df_simple %>% 
+  mutate(canada = case_when(name == "Robin Scherbatsky" ~ TRUE,
+                            name != "Robin Scherbatsky" ~ FALSE))
 ```
 
 
@@ -239,6 +252,7 @@ df_simple %>%
 | sd()     | Standard deviation  |
 | min()    | Minimum             |
 | max()    | Maximum       |
+| n()    | Number of Observations       |
 
 
 ##### *`arrange()`*
@@ -302,4 +316,94 @@ df_simple %>%
 - `df_simple %>% ungroup()` will do the job
 
 
+### Quiz
+
+- [3.30 pm class](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRURVI0OTk1RFNQT1NJU0ZaVFVNMkFFRVdWVC4u)
+
+- [5 pm class](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQ1A4SEM1TUQ5STREUDJVVDlSR0ZSNVpLWS4u)
+
+### Exercise
+
+The file, `dplyr-csv.csv`, we are going to use has the following variables:
+
+| ITEM | Info                  |
+|------|-----------------------|
+| 5601 | Ticker Symbol         |
+| 6001 | Company Name          |
+| 6026 | Nation          |
+| 7210 | Market Capitalization |
+| 7220 | Common Equity         |
+| 7230 | Total Assets          |
+| 7240 | Net Sales or Revenues |
+| 7250 | Net Income            |
+
+
+#### <span style="color: blue;">**Task 1:** </span> Read the csv file `dplyr-csv.csv`, store it as `df_raw`
+
+
+
+#### <span style="color: blue;">**Task 2:** </span>  Keep the variables year_, ITEM5601, ITEM6001, ITEM6026, ITEM7250; store it as `df_small`
+
+#### <span style="color: blue;">**Task 3:** </span> Rename the variables as given below; store it as `df_renamed`
+    
+| New Name | Old Name                 |
+|------|-----------------------|
+| year | year       |
+| ticker | ITEM5601          |
+| cname | ITEM6001          |
+| country | ITEM6026 |
+| net_income | ITEM7250         |
+
+#### <span style="color: blue;">**Task 4:** </span> Mutate the following variables; store it as `df_mutated`
+
+- `portugal`: TRUE when country is Portugal; FALSE otherwise
+- `net_income_m`: express net_income in million USD i.e. net_income/1e9 (note: 1e6 = 1,000,000)
+
+#### <span style="color: blue;">**Task 5:** </span> Keep only Portuguese firms; store it as `df_pt`
+
+#### <span style="color: blue;">**Task 6:** </span> Grouped by year, find the following statistics
+
+- `mean__m`: mean net_income_m
+- `median_m`: net_income_m
+- `n`: number of observations
+
+Hint: you need to use `na.rm = TRUE`
+
+
+#### **Final Output**
+
+```{r, echo = FALSE}
+library(readr)
+df_raw <- read_csv("data/w5/dplyr-csv.csv")
+# Select
+df_small <- df_raw %>% 
+  select(year_, ITEM5601, ITEM6001, ITEM6026, ITEM7250) 
+# Rename
+df_renamed <- df_small %>% 
+  rename(
+    year = year_,
+    cname = ITEM6001,  
+    cname = ITEM6001,          
+    country = ITEM6026, 
+    net_income = ITEM7250  
+  )
+# Mutate
+df_mutated <- df_renamed %>% 
+  mutate(portugal = case_when(country == "PORTUGAL" ~ TRUE,
+                              country != "PORTUGAL" ~ FALSE),
+         net_income_m = net_income/1e6)
+  
+# Filter
+df_pt<- df_mutated %>% 
+  filter(country == "PORTUGAL")
+
+# Summarise
+df_pt %>% 
+  group_by(year) %>% 
+  summarise(
+    mean_m = mean(net_income_m, na.rm = TRUE),
+    median_m = median(net_income_m, na.rm = TRUE),
+    n = n()
+  )
+```
 

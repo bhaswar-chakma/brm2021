@@ -305,6 +305,9 @@ $(document).ready(function () {
 <li>
   <a href="week4.html">Week 4</a>
 </li>
+<li>
+  <a href="week5.html">Week 5</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -529,8 +532,8 @@ df_simple %&gt;%
 </div>
 <div id="mutate" class="section level5">
 <h5><em><code>mutate()</code></em></h5>
-<p><strong>Problem:</strong> <span style="color: blue;"><em>Suppose we want to find percentage grades(currently grades are given out of 20). How to create such variable? For example, <span class="math inline">\(\frac{18}{20}\)</span> becomes <span class="math inline">\(90\)</span>.</em></span></p>
-<p><strong>Solution:</strong></p>
+<p><strong>Problem 1:</strong> <span style="color: blue;"><em>Suppose we want to find percentage grades(currently grades are given out of 20). How to create such variable? For example, <span class="math inline">\(\frac{18}{20}\)</span> becomes <span class="math inline">\(90\)</span>.</em></span></p>
+<p><strong>Solution 1:</strong></p>
 <p>Let’s call the new variable <code>grade_p</code></p>
 <pre class="r"><code>df_simple %&gt;% 
   mutate(grade_p = grade/20*100)</code></pre>
@@ -592,6 +595,74 @@ df_simple %&gt;%
 <td align="right">10</td>
 <td align="left">TRUE</td>
 <td align="right">50</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Problem 2:</strong> <span style="color: blue;"><em>Robin Scherbatsky was born in Canada. Generate a new variable, <code>canada</code>: TRUE when name is Robin Scherbatsky; FALSE otherwise. </em></span></p>
+<p><strong>Solution 2:</strong></p>
+<p>We will use <code>case_when()</code>. Note that there are many ways to do it. We will learn about them in the coming weeks.</p>
+<pre class="r"><code>df_simple %&gt;% 
+  mutate(canada = case_when(name == &quot;Robin Scherbatsky&quot; ~ TRUE,
+                            name != &quot;Robin Scherbatsky&quot; ~ FALSE))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">course</th>
+<th align="right">grade</th>
+<th align="left">us_born</th>
+<th align="left">canada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">12</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">BRM</td>
+<td align="right">8</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="left">BRM</td>
+<td align="right">10</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
 </tr>
 </tbody>
 </table>
@@ -851,6 +922,10 @@ df_simple %&gt;%
 <tr class="even">
 <td>max()</td>
 <td>Maximum</td>
+</tr>
+<tr class="odd">
+<td>n()</td>
+<td>Number of Observations</td>
 </tr>
 </tbody>
 </table>
@@ -1186,6 +1261,152 @@ glimpse(df_simple)</code></pre>
 <ul>
 <li><code>df_simple %&gt;% ungroup()</code> will do the job</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="quiz" class="section level3">
+<h3>Quiz</h3>
+<ul>
+<li><p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRURVI0OTk1RFNQT1NJU0ZaVFVNMkFFRVdWVC4u">3.30 pm class</a></p></li>
+<li><p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQ1A4SEM1TUQ5STREUDJVVDlSR0ZSNVpLWS4u">5 pm class</a></p></li>
+</ul>
+</div>
+<div id="exercise" class="section level3">
+<h3>Exercise</h3>
+<p>The file, <code>dplyr-csv.csv</code>, we are going to use has the following variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ITEM</th>
+<th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5601</td>
+<td>Ticker Symbol</td>
+</tr>
+<tr class="even">
+<td>6001</td>
+<td>Company Name</td>
+</tr>
+<tr class="odd">
+<td>6026</td>
+<td>Nation</td>
+</tr>
+<tr class="even">
+<td>7210</td>
+<td>Market Capitalization</td>
+</tr>
+<tr class="odd">
+<td>7220</td>
+<td>Common Equity</td>
+</tr>
+<tr class="even">
+<td>7230</td>
+<td>Total Assets</td>
+</tr>
+<tr class="odd">
+<td>7240</td>
+<td>Net Sales or Revenues</td>
+</tr>
+<tr class="even">
+<td>7250</td>
+<td>Net Income</td>
+</tr>
+</tbody>
+</table>
+<div id="task-1-read-the-csv-file-dplyr-csv.csv-store-it-as-df_raw" class="section level4">
+<h4><span style="color: blue;"><strong>Task 1:</strong> </span> Read the csv file <code>dplyr-csv.csv</code>, store it as <code>df_raw</code></h4>
+</div>
+<div id="task-2-keep-the-variables-year_-item5601-item6001-item6026-item7250-store-it-as-df_small" class="section level4">
+<h4><span style="color: blue;"><strong>Task 2:</strong> </span> Keep the variables year_, ITEM5601, ITEM6001, ITEM6026, ITEM7250; store it as <code>df_small</code></h4>
+</div>
+<div id="task-3-rename-the-variables-as-given-below-store-it-as-df_renamed" class="section level4">
+<h4><span style="color: blue;"><strong>Task 3:</strong> </span> Rename the variables as given below; store it as <code>df_renamed</code></h4>
+<table>
+<thead>
+<tr class="header">
+<th>New Name</th>
+<th>Old Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>year</td>
+<td>year</td>
+</tr>
+<tr class="even">
+<td>ticker</td>
+<td>ITEM5601</td>
+</tr>
+<tr class="odd">
+<td>cname</td>
+<td>ITEM6001</td>
+</tr>
+<tr class="even">
+<td>country</td>
+<td>ITEM6026</td>
+</tr>
+<tr class="odd">
+<td>net_income</td>
+<td>ITEM7250</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="task-4-mutate-the-following-variables-store-it-as-df_mutated" class="section level4">
+<h4><span style="color: blue;"><strong>Task 4:</strong> </span> Mutate the following variables; store it as <code>df_mutated</code></h4>
+<ul>
+<li><code>portugal</code>: TRUE when country is Portugal; FALSE otherwise</li>
+<li><code>net_income_m</code>: express net_income in million USD i.e. net_income/1e9 (note: 1e6 = 1,000,000)</li>
+</ul>
+</div>
+<div id="task-5-keep-only-portuguese-firms-store-it-as-df_pt" class="section level4">
+<h4><span style="color: blue;"><strong>Task 5:</strong> </span> Keep only Portuguese firms; store it as <code>df_pt</code></h4>
+</div>
+<div id="task-6-grouped-by-year-find-the-following-statistics" class="section level4">
+<h4><span style="color: blue;"><strong>Task 6:</strong> </span> Grouped by year, find the following statistics</h4>
+<ul>
+<li><code>mean__m</code>: mean net_income_m</li>
+<li><code>median_m</code>: net_income_m</li>
+<li><code>n</code>: number of observations</li>
+</ul>
+<p>Hint: you need to use <code>na.rm = TRUE</code></p>
+</div>
+<div id="final-output" class="section level4">
+<h4><strong>Final Output</strong></h4>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">mean_m</th>
+<th align="right">median_m</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2017</td>
+<td align="right">52.01716</td>
+<td align="right">7.781347</td>
+<td align="right">78</td>
+</tr>
+<tr class="even">
+<td align="right">2018</td>
+<td align="right">80.62462</td>
+<td align="right">8.881793</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">2019</td>
+<td align="right">89.25249</td>
+<td align="right">19.674088</td>
+<td align="right">71</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
