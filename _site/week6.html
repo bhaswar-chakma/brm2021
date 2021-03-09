@@ -354,6 +354,7 @@ $(document).ready(function () {
 <li><code>rowwise()</code></li>
 </ul></li>
 </ul>
+<p><a href="https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/Ete49ulR3elDgEgaB2fUsd8BRsm3GKEGp-x-1MC8lfgRHg?e=L9u23n">Download Projects</a></p>
 </div>
 <div id="join" class="section level3">
 <h3><code>*_join()</code></h3>
@@ -795,10 +796,11 @@ v_logical &lt;- c(TRUE, FALSE) # we could also use T and F (not recommended)
 &gt; 
 &gt; typeof(c(2.299, 1L, FALSE))
 [1] &quot;double&quot;</code></pre>
-<p><span style="color: blue;"><strong>What happens when you apply sum() to logical vectors?</strong></span></p>
+<p><span style="color: blue;"><strong>What happens when you apply sum() on logical vectors?</strong></span></p>
 <pre><code>&gt; v_grades &lt;- c(TRUE, FALSE, TRUE, TRUE) # pass = TRUE; fail = FALSE
 &gt; sum(v_grades)
 [1] 3</code></pre>
+<p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQkZNMk8yS0JRWEJRMEpEQ0tUMEtZMVNWRC4u">Now take the quiz!</a></p>
 </div>
 </div>
 <div id="bind_rows-rowwise" class="section level3">
@@ -1050,8 +1052,7 @@ df_all</code></pre>
 <p><span style="color: blue;"><strong>Solution 2:</strong></span></p>
 <pre class="r"><code>df_all %&gt;% 
   rowwise() %&gt;% 
-  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE)) %&gt;% 
-  ungroup()</code></pre>
+  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE)) </code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -1169,6 +1170,20 @@ df_all</code></pre>
 </table>
 </div>
 <p>Do not forget to <code>ungroup()</code>.</p>
+</div>
+<div id="barneys-assignment" class="section level3">
+<h3>Barney’s Assignment</h3>
+<p>Assignment:</p>
+<ul>
+<li>Can you knit?</li>
+<li>Did you read the <a href="https://af-ucp.courses/brm/assignments.html">instructions</a>
+<ul>
+<li>No PDF</li>
+<li>Absolute path</li>
+<li>Reference</li>
+</ul></li>
+</ul>
+<p>Good news!</p>
 </div>
 </div>
 

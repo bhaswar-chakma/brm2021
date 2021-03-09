@@ -25,6 +25,10 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
     -   `rowwise()`
 
+
+[Download Projects](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/Ete49ulR3elDgEgaB2fUsd8BRsm3GKEGp-x-1MC8lfgRHg?e=L9u23n)
+
+
 ### `*_join()`
 
 #### **Join types:**
@@ -190,6 +194,9 @@ $$logical < integer < double < character$$
 [1] 3
 ```
 
+
+[Now take the quiz!](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQkZNMk8yS0JRWEJRMEpEQ0tUMEtZMVNWRC4u)
+
 ### `bind_rows()` & `rowwise()`
 
 File: `w6-students-s2.csv`; store it as `df_s2`
@@ -248,3 +255,12 @@ Do not forget to `ungroup()`.
 
 ### Barney's Assignment
 
+Assignment:
+
+- Can you knit?
+- Did you read the [instructions](https://af-ucp.courses/brm/assignments.html)
+    - No PDF
+    - Absolute path
+    - Reference
+
+Good news!
