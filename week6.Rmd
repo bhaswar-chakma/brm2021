@@ -130,7 +130,7 @@ Do not create intermediate objects; Use `%>%`
 
 -   **Step 4:** store the data frame as `df_s1`
 
-```{r df-s1, echo = FALSE}
+```{r df-s1, echo = TRUE}
 df_s1 <- full_join(df_a1, df_a2, by = "name") %>% 
   mutate(
     # UPDATE AGE

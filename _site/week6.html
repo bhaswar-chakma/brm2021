@@ -15,7 +15,6 @@
 
 <title>Week 6</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -340,7 +339,7 @@ $(document).ready(function () {
 
 
 <div id="section" class="section level2 tabset">
-<h2 class="tabset"></h2>
+<h2></h2>
 <div id="objectives" class="section level3">
 <h3>Objectives</h3>
 <ul>
@@ -700,6 +699,18 @@ df_a1 %&gt;%
 <li><p><strong>Step 3:</strong> Mutate a variable <code>section</code>, which will contain the text “Section 1”</p></li>
 <li><p><strong>Step 4:</strong> store the data frame as <code>df_s1</code></p></li>
 </ul>
+<pre class="r"><code>df_s1 &lt;- full_join(df_a1, df_a2, by = &quot;name&quot;) %&gt;% 
+  mutate(
+    # UPDATE AGE
+    age = case_when(name == &quot;Ranjit&quot; ~ 70,
+                    name != &quot;Ranjit&quot; ~ age),
+    # UPDATE GENDER
+    gender = case_when(name == &quot;Ranjit&quot; ~ &quot;Male&quot;,
+                       name != &quot;Ranjit&quot; ~ gender),
+    # GENERATE SECTION
+    section = &quot;Section 1&quot;
+  )
+df_s1</code></pre>
 <div class="kable-table">
 <table>
 <thead>
