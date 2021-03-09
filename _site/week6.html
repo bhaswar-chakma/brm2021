@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Bhaswar Chakma" />
+
+<meta name="date" content="2021-03-02" />
+
+<title>Week 6</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Research Methods</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="videos.html">Video Tutorials</a>
+</li>
+<li>
+  <a href="week1.html">Week 1</a>
+</li>
+<li>
+  <a href="week2.html">Week 2</a>
+</li>
+<li>
+  <a href="week3.html">Week 3</a>
+</li>
+<li>
+  <a href="week4.html">Week 4</a>
+</li>
+<li>
+  <a href="week5.html">Week 5</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Week 6</h1>
+<h4 class="author">Bhaswar Chakma</h4>
+<h4 class="date">02 March 2021</h4>
+
+</div>
+
+
+<div id="section" class="section level2 tabset">
+<h2 class="tabset"></h2>
+<div id="objectives" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li><p><strong>dplyr::Two table verbs</strong></p>
+<ul>
+<li><code>inner_join()</code>; <code>left_join()</code>; <code>right_join()</code>; <code>full_join()</code></li>
+<li><code>bind_rows()</code></li>
+</ul></li>
+<li><p><strong>dplyr::Grouping</strong></p>
+<ul>
+<li><code>rowwise()</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="join" class="section level3">
+<h3><code>*_join()</code></h3>
+<div id="data" class="section level4">
+<h4>Data</h4>
+<pre class="r"><code>library(dplyr)
+library(readxl)
+df_a1 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A1&quot;)
+df_a2 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A2&quot;) </code></pre>
+<ul>
+<li>sheet = “A1”: <code>df_a1</code></li>
+</ul>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>sheet = “A2”: <code>df_a2</code>; Robin went to Japan; Ranjit attended</li>
+</ul>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">assignment2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">Ranjit</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="left-join" class="section level4">
+<h4><span style="color: blue;"><strong>LEFT JOIN</strong></span></h4>
+<pre class="r"><code># Option 1
+left_join(df_a1, df_a2, by = &quot;name&quot;) # here &quot;name&quot; is key; You can use, when needed, multiple keys e.g. by = c(&quot;id&quot;, &quot;name&quot;)</code></pre>
+<pre class="r"><code># Option 2
+df_a1 %&gt;%
+  left_join(df_a2, by = &quot;name&quot;)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="right">12</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="right-join" class="section level4">
+<h4><span style="color: blue;"><strong>RIGHT JOIN</strong></span></h4>
+<pre class="r"><code># Option 1
+right_join(df_a1, df_a2, by = &quot;name&quot;)</code></pre>
+<pre class="r"><code># Option 2
+df_a1 %&gt;%
+  right_join(df_a2, by = &quot;name&quot;)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">Ranjit</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="inner-join" class="section level4">
+<h4><span style="color: blue;"><strong>INNER JOIN</strong></span></h4>
+<pre class="r"><code># Option 1
+inner_join(df_a1, df_a2, by = &quot;name&quot;)</code></pre>
+<pre class="r"><code># Option 2
+df_a1 %&gt;%
+  inner_join(df_a2, by = &quot;name&quot;)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="full-join" class="section level4">
+<h4><span style="color: blue;"><strong>FULL JOIN</strong></span></h4>
+<pre class="r"><code># Option 1
+full_join(df_a1, df_a2, by = &quot;name&quot;)</code></pre>
+<pre class="r"><code># Option 2
+df_a1 %&gt;%
+  full_join(df_a2, by = &quot;name&quot;)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="right">12</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">Ranjit</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="taks-1-prepare-data-for-the-next-exercise-5-min" class="section level4">
+<h4><span style="color: blue;">Taks 1: Prepare data for the next exercise (5 min)</span></h4>
+<p>Do not create intermediate objects; Use <code>%&gt;%</code></p>
+<ul>
+<li><p><strong>Step 1:</strong> Full join <code>df_a1</code> and <code>df_a2</code></p></li>
+<li><p><strong>Step 2:</strong> Update Ranjit’s info: age is 70; gender is male (Hint: use <code>case_when()</code>)</p></li>
+<li><p><strong>Step 3:</strong> Mutate a variable <code>section</code>, which will contain the text “Section 1”</p></li>
+<li><p><strong>Step 4:</strong> store the data frame as <code>df_s1</code></p></li>
+</ul>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+<th align="left">section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="right">12</td>
+<td align="right">NA</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="even">
+<td align="left">Ranjit</td>
+<td align="right">70</td>
+<td align="left">Male</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+<td align="left">Section 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="coercion" class="section level4">
+<h4><span style="color: blue;"><strong>Coercion</strong></span></h4>
+<blockquote>
+<p><a href="https://www.vocabulary.com/dictionary/coercion">vocabulary.com</a>: “<em><strong>Coercion</strong> is making something happen by force, like when bullies use coercion to make kids give them their lunch money</em>”.</p>
+</blockquote>
+<p><img src="images/closet.png" width="646" /></p>
+<p><img src="images/board-meeting.jpeg" /><!-- --></p>
+<p><span class="math display">\[logical &lt; integer &lt; double &lt; character\]</span></p>
+<pre><code># Create Vectors
+# Use c() &quot;combine&quot;
+v_character &lt;- c(&quot;hello&quot;, &quot;world&quot;)
+v_double &lt;- c(2, 99)
+v_integer &lt;- c(2L,99L)
+v_logical &lt;- c(TRUE, FALSE) # we could also use T and F (not recommended)
+
+# Check Type
+&gt; typeof(v_character)
+[1] &quot;character&quot;
+&gt; typeof(v_double)
+[1] &quot;double&quot;
+&gt; typeof(v_integer)
+[1] &quot;integer&quot;
+&gt; typeof(v_logical)
+[1] &quot;logical&quot;</code></pre>
+<p><strong>Coercion in action:</strong></p>
+<pre><code>&gt; typeof(c(&quot;Hello&quot;, 2.299, 1L, FALSE))
+[1] &quot;character&quot;
+&gt; 
+&gt; typeof(c(2.299, 1L, FALSE))
+[1] &quot;double&quot;</code></pre>
+</div>
+</div>
+<div id="bind_rows-rowwise" class="section level3">
+<h3><code>bind_rows()</code> &amp; <code>rowwise()</code></h3>
+<p>File: <code>w6-students-s2.csv</code>; store it as <code>df_s2</code></p>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="left">assignment1</th>
+<th align="right">assignment2</th>
+<th align="left">section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Sheldon Cooper</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="left">21</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="even">
+<td align="left">Leonard Hofstadter</td>
+<td align="right">45</td>
+<td align="left">Male</td>
+<td align="left">19</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="odd">
+<td align="left">Penny Hofstadter</td>
+<td align="right">35</td>
+<td align="left">Female</td>
+<td align="left">Absent</td>
+<td align="right">15</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="even">
+<td align="left">Howard Wolowitz</td>
+<td align="right">40</td>
+<td align="left">Male</td>
+<td align="left">17</td>
+<td align="right">18</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="odd">
+<td align="left">Raj Koothrappali</td>
+<td align="right">39</td>
+<td align="left">Male</td>
+<td align="left">18</td>
+<td align="right">10</td>
+<td align="left">Section 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Can you find the mean of <code>assignment1</code>?</p>
+<ul>
+<li>try <code>mean(df_s2$assignment1)</code></li>
+</ul>
+<p>Have a glimpse of <code>df_s2</code></p>
+<pre class="r"><code>glimpse(df_s2)</code></pre>
+<pre><code>## Rows: 5
+## Columns: 6
+## $ name        &lt;chr&gt; &quot;Sheldon Cooper&quot;, &quot;Leonard Hofstadter&quot;, &quot;Penny Hofstadt...
+## $ age         &lt;dbl&gt; 47, 45, 35, 40, 39
+## $ gender      &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;
+## $ assignment1 &lt;chr&gt; &quot;21&quot;, &quot;19&quot;, &quot;Absent&quot;, &quot;17&quot;, &quot;18&quot;
+## $ assignment2 &lt;dbl&gt; 19, 19, 15, 18, 10
+## $ section     &lt;chr&gt; &quot;Section 2&quot;, &quot;Section 2&quot;, &quot;Section 2&quot;, &quot;Section 2&quot;, &quot;Se...</code></pre>
+<p>Who is the boss?</p>
+<p>We need to use <span style="color: blue;"><strong><code>as.numeric()</code></strong></span>.</p>
+<pre class="r"><code>df_s2 &lt;- df_s2 %&gt;%
+  mutate(assignment1 = as.numeric(assignment1))
+df_s2</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+<th align="left">section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Sheldon Cooper</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">21</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="even">
+<td align="left">Leonard Hofstadter</td>
+<td align="right">45</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="odd">
+<td align="left">Penny Hofstadter</td>
+<td align="right">35</td>
+<td align="left">Female</td>
+<td align="right">NA</td>
+<td align="right">15</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="even">
+<td align="left">Howard Wolowitz</td>
+<td align="right">40</td>
+<td align="left">Male</td>
+<td align="right">17</td>
+<td align="right">18</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="odd">
+<td align="left">Raj Koothrappali</td>
+<td align="right">39</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">10</td>
+<td align="left">Section 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can now use <code>mean(df_s2$assignment1)</code> but we must the argument <span style="color: blue;"><strong><code>na.rm = TRUE</code></strong></span></p>
+<pre class="r"><code>mean(df_s2$assignment1, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 18.75</code></pre>
+<p><span style="color: blue;"><strong>Problem 1: Bind the rows of <code>df_s1</code> and <code>df_s2</code>; call it <code>df_all</code></strong></span></p>
+<p><span style="color: blue;"><strong>Solution 1:</strong></span>.</p>
+<pre class="r"><code>bind_rows(df_s1, df_s2)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+<th align="left">section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="right">12</td>
+<td align="right">NA</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="even">
+<td align="left">Ranjit</td>
+<td align="right">70</td>
+<td align="left">Male</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+<td align="left">Section 1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sheldon Cooper</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">21</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="even">
+<td align="left">Leonard Hofstadter</td>
+<td align="right">45</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="odd">
+<td align="left">Penny Hofstadter</td>
+<td align="right">35</td>
+<td align="left">Female</td>
+<td align="right">NA</td>
+<td align="right">15</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="even">
+<td align="left">Howard Wolowitz</td>
+<td align="right">40</td>
+<td align="left">Male</td>
+<td align="right">17</td>
+<td align="right">18</td>
+<td align="left">Section 2</td>
+</tr>
+<tr class="odd">
+<td align="left">Raj Koothrappali</td>
+<td align="right">39</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">10</td>
+<td align="left">Section 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span style="color: blue;"><strong>Problem 2: For each student, find average grade</strong></span></p>
+<p><span style="color: blue;"><strong>Solution 2:</strong></span></p>
+<pre class="r"><code>bind_rows(df_s1, df_s2) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+<th align="right">assignment1</th>
+<th align="right">assignment2</th>
+<th align="left">section</th>
+<th align="right">avg_grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ted Mosby</td>
+<td align="right">46</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">18</td>
+<td align="left">Section 1</td>
+<td align="right">18.0</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Eriksen</td>
+<td align="right">41</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="left">Section 1</td>
+<td align="right">19.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Robin Scherbatsky</td>
+<td align="right">38</td>
+<td align="left">Female</td>
+<td align="right">12</td>
+<td align="right">NA</td>
+<td align="left">Section 1</td>
+<td align="right">12.0</td>
+</tr>
+<tr class="even">
+<td align="left">Barney Stinson</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">8</td>
+<td align="right">12</td>
+<td align="left">Section 1</td>
+<td align="right">10.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Lily Aldrin</td>
+<td align="right">46</td>
+<td align="left">Female</td>
+<td align="right">10</td>
+<td align="right">14</td>
+<td align="left">Section 1</td>
+<td align="right">12.0</td>
+</tr>
+<tr class="even">
+<td align="left">Ranjit</td>
+<td align="right">70</td>
+<td align="left">Male</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+<td align="left">Section 1</td>
+<td align="right">12.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Sheldon Cooper</td>
+<td align="right">47</td>
+<td align="left">Male</td>
+<td align="right">21</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+<td align="right">20.0</td>
+</tr>
+<tr class="even">
+<td align="left">Leonard Hofstadter</td>
+<td align="right">45</td>
+<td align="left">Male</td>
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="left">Section 2</td>
+<td align="right">19.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Penny Hofstadter</td>
+<td align="right">35</td>
+<td align="left">Female</td>
+<td align="right">NA</td>
+<td align="right">15</td>
+<td align="left">Section 2</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="even">
+<td align="left">Howard Wolowitz</td>
+<td align="right">40</td>
+<td align="left">Male</td>
+<td align="right">17</td>
+<td align="right">18</td>
+<td align="left">Section 2</td>
+<td align="right">17.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Raj Koothrappali</td>
+<td align="right">39</td>
+<td align="left">Male</td>
+<td align="right">18</td>
+<td align="right">10</td>
+<td align="left">Section 2</td>
+<td align="right">14.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Do not forget to <code>ungroup()</code>.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
