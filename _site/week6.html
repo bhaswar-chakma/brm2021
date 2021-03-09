@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bhaswar Chakma" />
 
-<meta name="date" content="2021-03-02" />
+<meta name="date" content="2021-03-09" />
 
 <title>Week 6</title>
 
@@ -309,6 +309,9 @@ $(document).ready(function () {
 <li>
   <a href="week5.html">Week 5</a>
 </li>
+<li>
+  <a href="week6.html">Week 6</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -331,7 +334,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Week 6</h1>
 <h4 class="author">Bhaswar Chakma</h4>
-<h4 class="date">02 March 2021</h4>
+<h4 class="date">09 March 2021</h4>
 
 </div>
 
@@ -356,13 +359,14 @@ $(document).ready(function () {
 <h3><code>*_join()</code></h3>
 <div id="data" class="section level4">
 <h4>Data</h4>
+<ul>
+<li><p>File: <code>w6-students.xlsx</code></p></li>
+<li><p>Sheet = “A1”: <code>df_a1</code></p></li>
+</ul>
 <pre class="r"><code>library(dplyr)
 library(readxl)
 df_a1 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A1&quot;)
 df_a2 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A2&quot;) </code></pre>
-<ul>
-<li>sheet = “A1”: <code>df_a1</code></li>
-</ul>
 <div class="kable-table">
 <table>
 <thead>

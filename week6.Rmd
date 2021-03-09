@@ -1,6 +1,6 @@
 ---
 title: "Week 6"
-date: "02 March 2021"
+date: "09 March 2021"
 author: "Bhaswar Chakma"
 output:
   html_document:
@@ -29,6 +29,10 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 #### Data
 
+- File: `w6-students.xlsx`
+
+- Sheet = "A1": `df_a1`
+
 ```{r data-s1, echo = TRUE}
 library(dplyr)
 library(readxl)
@@ -36,7 +40,6 @@ df_a1 <- read_excel("data/w6-students.xlsx", sheet = "A1")
 df_a2 <- read_excel("data/w6-students.xlsx", sheet = "A2") 
 ```
 
--   sheet = "A1": `df_a1`
 
 ```{r, echo=FALSE}
 df_a1 
