@@ -27,11 +27,17 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 ### `*_join()`
 
-#### Data
+#### **Join types:**
 
-- File: `w6-students.xlsx`
+1.  `left_join()`: return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
 
-- Sheet = "A1": `df_a1`
+2.  `right_join()`: return all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+
+3.  `inner_join()`: return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.
+
+4.  `full_join()`: return all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.
+
+#### **Example**
 
 ```{r data-s1, echo = TRUE}
 library(dplyr)
@@ -40,12 +46,17 @@ df_a1 <- read_excel("data/w6-students.xlsx", sheet = "A1")
 df_a2 <- read_excel("data/w6-students.xlsx", sheet = "A2") 
 ```
 
+-   File: `w6-students.xlsx`; Sheet: **`A1`**
+-   `df_a1`
 
 ```{r, echo=FALSE}
 df_a1 
 ```
 
--   sheet = "A2": `df_a2`; Robin went to Japan; Ranjit attended
+-   File: `w6-students.xlsx`; Sheet: **`A2`**
+-   `df_a2`
+
+*Robin went to Japan; Ranjit attended*
 
 ```{r, echo=FALSE}
 df_a2
@@ -103,7 +114,6 @@ df_a1 %>%
   full_join(df_a2, by = "name")
 ```
 
-
 #### [Taks 1: Prepare data for the next exercise (5 min)]{style="color: blue;"}
 
 Do not create intermediate objects; Use `%>%`
@@ -131,9 +141,9 @@ df_s1 <- full_join(df_a1, df_a2, by = "name") %>%
 df_s1
 ```
 
+#### **Data Structures**
 
-
-#### [**Coercion**]{style="color: blue;"}
+[**Coercion**]{style="color: blue;"}
 
 > [vocabulary.com](https://www.vocabulary.com/dictionary/coercion): "***Coercion** is making something happen by force, like when bullies use coercion to make kids give them their lunch money*".
 
@@ -145,43 +155,42 @@ knitr::include_graphics("images/closet.png")
 knitr::include_graphics("images/board-meeting.jpeg")
 ```
 
-
 $$logical < integer < double < character$$
 
-```
-# Create Vectors
-# Use c() "combine"
-v_character <- c("hello", "world")
-v_double <- c(2, 99)
-v_integer <- c(2L,99L)
-v_logical <- c(TRUE, FALSE) # we could also use T and F (not recommended)
+    # Create Vectors
+    # Use c() "combine"
+    v_character <- c("hello", "world")
+    v_double <- c(2, 99)
+    v_integer <- c(2L,99L)
+    v_logical <- c(TRUE, FALSE) # we could also use T and F (not recommended)
 
-# Check Type
-> typeof(v_character)
-[1] "character"
-> typeof(v_double)
-[1] "double"
-> typeof(v_integer)
-[1] "integer"
-> typeof(v_logical)
-[1] "logical"
-```
-
-
+    # Check Type
+    > typeof(v_character)
+    [1] "character"
+    > typeof(v_double)
+    [1] "double"
+    > typeof(v_integer)
+    [1] "integer"
+    > typeof(v_logical)
+    [1] "logical"
 
 **Coercion in action:**
 
-```
-> typeof(c("Hello", 2.299, 1L, FALSE))
-[1] "character"
-> 
-> typeof(c(2.299, 1L, FALSE))
-[1] "double"
-```
+    > typeof(c("Hello", 2.299, 1L, FALSE))
+    [1] "character"
+    > 
+    > typeof(c(2.299, 1L, FALSE))
+    [1] "double"
 
+[**What happens when you apply sum() on logical vectors?**]{style="color: blue;"}
+
+```
+> v_grades <- c(TRUE, FALSE, TRUE, TRUE) # pass = TRUE; fail = FALSE
+> sum(v_grades)
+[1] 3
+```
 
 ### `bind_rows()` & `rowwise()`
-
 
 File: `w6-students-s2.csv`; store it as `df_s2`
 
@@ -190,15 +199,16 @@ df_s2 <- readr::read_csv("data/w6-students-s2.csv")
 df_s2
 ```
 
-
 Can you find the mean of `assignment1`?
 
-  - try `mean(df_s2$assignment1)`
+-   try `mean(df_s2$assignment1)`
 
 Have a glimpse of `df_s2`
+
 ```{r glimpse-s2}
 glimpse(df_s2)
 ```
+
 Who is the boss?
 
 We need to use [**`as.numeric()`**]{style="color: blue;"}.
@@ -208,7 +218,9 @@ df_s2 <- df_s2 %>%
   mutate(assignment1 = as.numeric(assignment1))
 df_s2
 ```
-We can now use `mean(df_s2$assignment1)` but we must the argument [**`na.rm = TRUE`**]{style="color: blue;"} 
+
+We can now use `mean(df_s2$assignment1)` but we must the argument [**`na.rm = TRUE`**]{style="color: blue;"}
+
 ```{r}
 mean(df_s2$assignment1, na.rm = TRUE)
 ```
@@ -218,7 +230,8 @@ mean(df_s2$assignment1, na.rm = TRUE)
 [**Solution 1:**]{style="color: blue;"}.
 
 ```{r binded}
-bind_rows(df_s1, df_s2)
+df_all <- bind_rows(df_s1, df_s2)
+df_all
 ```
 
 [**Problem 2: For each student, find average grade**]{style="color: blue;"}
@@ -226,9 +239,12 @@ bind_rows(df_s1, df_s2)
 [**Solution 2:**]{style="color: blue;"}
 
 ```{r}
-bind_rows(df_s1, df_s2) %>% 
+df_all %>% 
   rowwise() %>% 
-  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE))
+  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE)) 
 ```
 
 Do not forget to `ungroup()`.
+
+### Barney's Assignment
+

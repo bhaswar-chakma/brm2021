@@ -357,16 +357,25 @@ $(document).ready(function () {
 </div>
 <div id="join" class="section level3">
 <h3><code>*_join()</code></h3>
-<div id="data" class="section level4">
-<h4>Data</h4>
-<ul>
-<li><p>File: <code>w6-students.xlsx</code></p></li>
-<li><p>Sheet = “A1”: <code>df_a1</code></p></li>
-</ul>
+<div id="join-types" class="section level4">
+<h4><strong>Join types:</strong></h4>
+<ol style="list-style-type: decimal">
+<li><p><code>left_join()</code>: return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.</p></li>
+<li><p><code>right_join()</code>: return all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.</p></li>
+<li><p><code>inner_join()</code>: return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.</p></li>
+<li><p><code>full_join()</code>: return all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.</p></li>
+</ol>
+</div>
+<div id="example" class="section level4">
+<h4><strong>Example</strong></h4>
 <pre class="r"><code>library(dplyr)
 library(readxl)
 df_a1 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A1&quot;)
 df_a2 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A2&quot;) </code></pre>
+<ul>
+<li>File: <code>w6-students.xlsx</code>; Sheet: <strong><code>A1</code></strong></li>
+<li><code>df_a1</code></li>
+</ul>
 <div class="kable-table">
 <table>
 <thead>
@@ -412,8 +421,10 @@ df_a2 &lt;- read_excel(&quot;data/w6-students.xlsx&quot;, sheet = &quot;A2&quot;
 </table>
 </div>
 <ul>
-<li>sheet = “A2”: <code>df_a2</code>; Robin went to Japan; Ranjit attended</li>
+<li>File: <code>w6-students.xlsx</code>; Sheet: <strong><code>A2</code></strong></li>
+<li><code>df_a2</code></li>
 </ul>
+<p><em>Robin went to Japan; Ranjit attended</em></p>
 <div class="kable-table">
 <table>
 <thead>
@@ -753,8 +764,9 @@ df_a1 %&gt;%
 </table>
 </div>
 </div>
-<div id="coercion" class="section level4">
-<h4><span style="color: blue;"><strong>Coercion</strong></span></h4>
+<div id="data-structures" class="section level4">
+<h4><strong>Data Structures</strong></h4>
+<p><span style="color: blue;"><strong>Coercion</strong></span></p>
 <blockquote>
 <p><a href="https://www.vocabulary.com/dictionary/coercion">vocabulary.com</a>: “<em><strong>Coercion</strong> is making something happen by force, like when bullies use coercion to make kids give them their lunch money</em>”.</p>
 </blockquote>
@@ -783,6 +795,10 @@ v_logical &lt;- c(TRUE, FALSE) # we could also use T and F (not recommended)
 &gt; 
 &gt; typeof(c(2.299, 1L, FALSE))
 [1] &quot;double&quot;</code></pre>
+<p><span style="color: blue;"><strong>What happens when you apply sum() to logical vectors?</strong></span></p>
+<pre><code>&gt; v_grades &lt;- c(TRUE, FALSE, TRUE, TRUE) # pass = TRUE; fail = FALSE
+&gt; sum(v_grades)
+[1] 3</code></pre>
 </div>
 </div>
 <div id="bind_rows-rowwise" class="section level3">
@@ -924,7 +940,8 @@ df_s2</code></pre>
 <pre><code>## [1] 18.75</code></pre>
 <p><span style="color: blue;"><strong>Problem 1: Bind the rows of <code>df_s1</code> and <code>df_s2</code>; call it <code>df_all</code></strong></span></p>
 <p><span style="color: blue;"><strong>Solution 1:</strong></span>.</p>
-<pre class="r"><code>bind_rows(df_s1, df_s2)</code></pre>
+<pre class="r"><code>df_all &lt;- bind_rows(df_s1, df_s2)
+df_all</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -1031,9 +1048,10 @@ df_s2</code></pre>
 </div>
 <p><span style="color: blue;"><strong>Problem 2: For each student, find average grade</strong></span></p>
 <p><span style="color: blue;"><strong>Solution 2:</strong></span></p>
-<pre class="r"><code>bind_rows(df_s1, df_s2) %&gt;% 
+<pre class="r"><code>df_all %&gt;% 
   rowwise() %&gt;% 
-  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE))</code></pre>
+  mutate(avg_grade = mean(c(assignment1, assignment2), na.rm = TRUE)) %&gt;% 
+  ungroup()</code></pre>
 <div class="kable-table">
 <table>
 <thead>
