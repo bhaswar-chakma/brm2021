@@ -222,6 +222,8 @@ ggplot(df, aes(x = gdpPercap, y = lifeExp, size = pop_m, color = continent)) +
 
 ###  {.tabset}
 
+[Ex1 Solution](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/El1Sto_paa9OgnaTRzM38QMBFWE-s1IUP8xYKGHjzftNeA?e=JJYpNH)
+
 #### bar() and col()
 
 - geom_bar() by default will show count of observations
@@ -354,3 +356,10 @@ ggplot(data = df_pt, aes(x = year, y = gdpPercap)) +
   geom_line() +
   geom_point()
 ```
+
+## RMD
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/rmd-new.png")
+```
+
