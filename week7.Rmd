@@ -357,6 +357,9 @@ ggplot(data = df_pt, aes(x = year, y = gdpPercap)) +
   geom_point()
 ```
 
+
+[Take the quiz!](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUNzY0M1FSQUJOWk5EOUFEM05GSUFTTlJNVS4u)
+
 ## RMD
 
 ```{r, echo = FALSE}
