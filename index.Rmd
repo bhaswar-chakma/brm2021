@@ -14,7 +14,7 @@ Last Updated: `r lubridate::today()`
 
 ### Announcement
 
-**Starting from next class (23 Feb), I will take class using Teams.**
+**R Hangout Session: Saturday 3.30pm (10 April 2021)**
 
   - To join Teams, click the link below or use the code (see [Week 1](https://brmlab2021.netlify.app/week1.html) for instructions)
 

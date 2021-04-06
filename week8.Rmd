@@ -30,15 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ## Review
 
-<iframe width="1000px" height="1000px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQ1dGMUtLSUw1UUdJVEFKVUk4SlVZMkdZWS4u">
-
-<p>
-
-Your browser does not support iframes
-
-</p>
-
-</iframe>
+<iframe width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQ1dGMUtLSUw1UUdJVEFKVUk4SlVZMkdZWS4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
 
 ```{r}
 library(tidyverse)
@@ -319,7 +311,9 @@ df_healthcare %>%
 
 [**Produce the following plot:**]{style="color: blue;"}
 
-```{r}
+
+
+```{r, echo = FALSE, fig.height = 12, fig.width = 12}
 df_healthcare %>% 
   rename(industry = 3,
          revenue = 4,
