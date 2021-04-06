@@ -1,0 +1,360 @@
+---
+title: "Week 8"
+date: "06 April 2021"
+author: "Bhaswar Chakma"
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+#  {.tabset}
+
+## Objectives
+
+-   Review the basics of ggplot
+
+-   More options
+
+    -   `facet_wrap()`: forms a matrix of panels defined by row and column faceting variables
+
+    -   `facet_grid()`: wraps a 1d sequence of panels into 2d
+
+    -   `labs()`: adds title and subtitle; changes axis and legend labels
+
+    -   `theme()`: customizes the non-data components of your plots: i.e. titles, labels, fonts, background, gridlines, and legends.
+
+## Review
+
+<iframe width="1000px" height="1000px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUQ1dGMUtLSUw1UUdJVEFKVUk4SlVZMkdZWS4u">
+
+<p>
+
+Your browser does not support iframes
+
+</p>
+
+</iframe>
+
+```{r}
+library(tidyverse)
+df_students <- readr::read_csv("https://www.dropbox.com/s/2xbw1m9favzo1lc/w8-students.csv?dl=1")
+```
+
+```{r echo = FALSE}
+DT::datatable(df_students)
+```
+
+**data only**
+
+```{r bar0a}
+ggplot(df_students)
+```
+
+**data + aes**
+
+```{r bar0b}
+ggplot(df_students, aes(x = name, y = grade)) 
+```
+
+**data + aes + geom**
+
+```{r bar}
+ggplot(df_students, aes(x = name, y = grade)) +
+  geom_col()
+```
+
+**More aesthetic**
+
+```{r bar1-with-aes}
+ggplot(df_students, aes(x = name, y = grade, fill = section)) +
+  geom_col()
+```
+
+**Names are not appearing properly; flip the coordinates!**
+
+```{r bar1-with-aes-cflip}
+ggplot(df_students, aes(x = name, y = grade, fill = section)) +
+  geom_col() +
+  coord_flip()
+```
+
+**Sorted graph**
+
+```{r bar1-with-aes-cflip-reorder}
+ggplot(df_students, aes(x = reorder(name, grade), y = grade, fill = section)) +
+  geom_col() +
+  coord_flip()
+```
+
+```{r bar1-with-aes-cflip-reorder2}
+ggplot(df_students, aes(x = reorder(name, -grade), y = grade, fill = section)) +
+  geom_col() +
+  coord_flip()
+```
+
+
+We can modify the values e.g. express grade in %
+
+```{r bar1-with-aes-cflip-reorder2-values-changed}
+ggplot(df_students, aes(x = reorder(name, -grade), y = grade/20*100, fill = section)) +
+  geom_col() +
+  coord_flip()
+```
+
+## Facets
+
+**`facet_wrap()`**
+
+```{r fwrap1}
+ggplot(df_students, aes(x = reorder(name, -grade), y = grade)) +
+  geom_col() +
+  facet_wrap(~ section)
+```
+
+**`facet_grid()`**
+
+```{r fgrid1}
+ggplot(df_students, aes(x = reorder(name, -grade), y = grade)) +
+  geom_col() +
+  facet_grid(gender ~ section)
+```
+
+```{r fgrid2}
+ggplot(df_students, aes(x = reorder(name, -grade), y = grade)) +
+  geom_col() +
+  facet_grid(gender ~ section, scales = "free")
+```
+
+
+
+## Labs
+
+-   `labs()`:
+
+    -   title
+
+    -   subtitle
+
+    -   x
+
+    -   y
+
+    -   fill/color
+
+```{r}
+ggplot(df_students, aes(x = name, y = grade, fill = section)) +
+  geom_col() +
+  labs(title = "BRM Students",
+       subtitle = "Midterm Grades",
+       x = "Name",
+       y = "Grade",
+       fill = "Section")
+```
+
+**We can store the plot and use it later**
+
+```{r}
+plot1 <- ggplot(df_students, aes(x = name, y = grade, fill = section)) +
+  geom_col() +
+  labs(title = "Midterm Grades",
+       subtitle = "Course: BRM",
+       x = "Name",
+       y = "Grade",
+       fill = "Section")
+```
+
+## Theme
+
+-   `theme()` :
+
+    -   axis.text.x
+
+    -   axis.text.y
+
+    -   axis.title.x
+
+    -   axis.title.y
+
+    -   legend.text
+
+    -   legend.title
+
+        -   `element_text()`
+
+Here is `plot1`
+
+```{r}
+plot1
+```
+
+**Change the names' font size (x axis text)**
+
+```{r}
+plot1 +
+  theme(axis.text = element_text(size = 8))
+```
+
+**rotate the names (x axis text)**
+
+```{r}
+plot1 +
+  theme(axis.text = element_text(angle = 90))
+```
+
+## Excercise{.tabset}
+
+### Excercise 1
+
+Read the Excel file: 
+
+  - **file**: `w8-refinitive.xlsx` 
+
+      - **sheet**: `mcap_100B_or_more`
+
+[**Rename:**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+df_mcap <- readxl::read_excel("data/w8-refinitive.xlsx", 
+                      sheet = "mcap_100B_or_more") %>% 
+  rename(cname = 2,
+         country = 3,
+         mcap = 4,
+         industry = 5, 
+         isin = 6) %>% 
+  mutate(mcap = mcap/1e9) %>% 
+  arrange(-mcap) %>% 
+  select(-1)
+DT::datatable(df_mcap)
+```
+[**Produce the following plots:**]{style="color: blue;"}
+
+
+```{r top16, echo = FALSE}
+# Plot Market Cap: Top 16
+df_mcap %>%
+  filter(mcap > 400) %>% 
+  ggplot(aes(x = reorder(cname, mcap),
+             y = mcap,
+             fill = industry)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "",
+       y = "Market Cap (in billion US$)",
+       fill = "",
+       title = "The 16 largest companies in the world by market cap") +
+  theme(axis.text.y = element_text(size = 8),
+        axis.title.x = element_text(size = 10),
+        #axis.title.y = element_text(size = 10),
+        legend.text = element_text(size = 8),
+        #legend.title = element_text(size = 10),
+        #plot.title = element_text(size = 12)
+  )
+```
+
+
+
+```{r pharmaonly, echo = FALSE}
+# Plot Market Cap: Pharmaceuticals
+df_mcap %>%
+  filter(industry == "Pharmaceuticals" & country != "United Kingdom") %>%
+  mutate(region = case_when(country == "United States of America" ~ "US",
+                            country != "United States of America" ~ "Europe")) %>% 
+  ggplot(aes(x = reorder(cname, mcap),
+             y = mcap,
+             fill = region)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "",
+       y = "Market Cap (in billion US$)",
+       fill = "Region",
+       title = "Largest pharmaceutical companies in the world by market cap") +
+  theme(axis.text.y = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        #axis.title.y = element_text(size = 10),
+        legend.text = element_text(size = 8),
+        legend.title = element_text(size = 10),
+        #plot.title = element_text(size = 12)
+  )
+```
+
+### Exercise 2
+
+
+Read the Excel file: 
+
+  - **file**: `w8-refinitive.xlsx` 
+
+      - **sheet**: `healthcare`
+
+[**Do some wrangling:**]{style="color: blue;"}
+
+**`head()` of raw data**
+```{r, echo=FALSE}
+df_healthcare <- readxl::read_excel("data/w8-refinitive.xlsx", 
+                            sheet = "healthcare")
+head(df_healthcare)
+```
+
+
+**`head()` of modified data**
+```{r, echo = FALSE}
+df_healthcare %>% 
+  rename(industry = 3,
+         revenue = 4,
+         operating_expense = 5,
+         mcap = 6,
+         rnd = 7,
+         region = 8) %>% 
+  mutate(across(revenue:rnd, as.numeric)) %>% 
+  head()
+```
+
+
+
+
+[**Produce the following plot:**]{style="color: blue;"}
+
+```{r}
+df_healthcare %>% 
+  rename(industry = 3,
+         revenue = 4,
+         operating_expense = 5,
+         mcap = 6,
+         rnd = 7,
+         region = 8) %>% 
+  mutate(across(revenue:rnd, as.numeric)) %>%
+  filter(region != "NULL") %>% 
+  ggplot(aes(x = operating_expense/1e9, y = revenue/1e9,
+             size = mcap/1e9, shape= region, color = industry)) +
+  geom_point() 
+```
+
+### Exercise 3
+
+[**Use the `gapminder` data set and produce the following plot:**]{style="color: blue;"}
+
+
+```{r}
+df_pop <- gapminder::gapminder
+head(df)
+```
+```{r, echo = FALSE}
+df_pop %>% 
+  group_by(continent, year) %>% 
+  summarise(avg_pop = mean(pop)) %>% 
+  ggplot(aes(x = year, y = avg_pop/1e6, color = continent)) +
+  geom_line(size = 1) +
+  labs(x = "Year",
+       y = "Average (in millions)",
+       title = "World Population",
+       subtitle = "From 1952 to 2007",
+       color = "Continent")
+```
+
+
+

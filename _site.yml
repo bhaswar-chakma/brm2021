@@ -20,12 +20,18 @@ navbar:
       href: week6.html
     - text: "Week 7"
       href: week7.html
+    - text: "Week 8"
+      href: week8.html
 
 
 
 output:
   html_document:
-    theme: cosmo
+    theme: flatly
+    #theme: cosmo
     highlight: textmate
+    # theme: flatly
+    # toc: TRUE
+    # toc_float: TRUE
     
     
