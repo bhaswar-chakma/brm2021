@@ -210,7 +210,7 @@ Read the Excel file:
 
 [**Rename:**]{style="color: blue;"}
 
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 df_mcap <- readxl::read_excel("data/w8-refinitive.xlsx", 
                       sheet = "mcap_100B_or_more") %>% 
   rename(cname = 2,
@@ -221,12 +221,18 @@ df_mcap <- readxl::read_excel("data/w8-refinitive.xlsx",
   mutate(mcap = mcap/1e9) %>% 
   arrange(-mcap) %>% 
   select(-1)
+
+```
+
+```{r}
 DT::datatable(df_mcap)
 ```
+
+
 [**Produce the following plots:**]{style="color: blue;"}
 
 
-```{r top16, echo = FALSE}
+```{r top16, echo = TRUE}
 # Plot Market Cap: Top 16
 df_mcap %>%
   filter(mcap > 400) %>% 
@@ -241,16 +247,13 @@ df_mcap %>%
        title = "The 16 largest companies in the world by market cap") +
   theme(axis.text.y = element_text(size = 8),
         axis.title.x = element_text(size = 10),
-        #axis.title.y = element_text(size = 10),
-        legend.text = element_text(size = 8),
-        #legend.title = element_text(size = 10),
-        #plot.title = element_text(size = 12)
+        legend.text = element_text(size = 8)
   )
 ```
 
 
 
-```{r pharmaonly, echo = FALSE}
+```{r pharmaonly, echo = TRUE}
 # Plot Market Cap: Pharmaceuticals
 df_mcap %>%
   filter(industry == "Pharmaceuticals" & country != "United Kingdom") %>%
@@ -267,10 +270,9 @@ df_mcap %>%
        title = "Largest pharmaceutical companies in the world by market cap") +
   theme(axis.text.y = element_text(size = 8),
         axis.text.x = element_text(size = 8),
-        #axis.title.y = element_text(size = 10),
         legend.text = element_text(size = 8),
-        legend.title = element_text(size = 10),
-        #plot.title = element_text(size = 12)
+        legend.title = element_text(size = 10)
+        
   )
 ```
 
@@ -286,7 +288,7 @@ Read the Excel file:
 [**Do some wrangling:**]{style="color: blue;"}
 
 **`head()` of raw data**
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 df_healthcare <- readxl::read_excel("data/w8-refinitive.xlsx", 
                             sheet = "healthcare")
 head(df_healthcare)
@@ -294,7 +296,7 @@ head(df_healthcare)
 
 
 **`head()` of modified data**
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 df_healthcare %>% 
   rename(industry = 3,
          revenue = 4,
@@ -313,7 +315,7 @@ df_healthcare %>%
 
 
 
-```{r, echo = FALSE, fig.height = 12, fig.width = 12}
+```{r, echo = TRUE, fig.height = 12, fig.width = 12}
 df_healthcare %>% 
   rename(industry = 3,
          revenue = 4,
@@ -337,7 +339,7 @@ df_healthcare %>%
 df_pop <- gapminder::gapminder
 head(df)
 ```
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 df_pop %>% 
   group_by(continent, year) %>% 
   summarise(avg_pop = mean(pop)) %>% 

@@ -1,0 +1,310 @@
+---
+title: "Week 9"
+date: "12 April 2021"
+author: "Bhaswar Chakma"
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+#  {.tabset}
+
+## Objectives
+
+```{r logo-dplyr, echo = FALSE, fig.align='center'}
+knitr::include_graphics("images/tidyr-logo.png")
+```
+
+## Tidy Data
+
+
+```{r logo-tidyr, echo = FALSE, fig.align='center'}
+knitr::include_graphics("images/tidy-data.png")
+```
+
+1. Each variable must have its own column.
+
+2. Each observation must have its own row.
+
+3. Each value must have its own cell.
+
+
+
+**Data:**
+
+- Create a folder `data` in your project directory. 
+
+- [Click here to download](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EtziHFqAtc5BsmTvQ1nc9XIBP8d6H9_ns-vNPvMzCwjQ3g?e=C5Dwv4) or check in Teams/Files.
+
+- Save them in the `data`folder.
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+df1 <- read_excel("data/w9-tidy-untidy.xlsx", sheet = "df1")
+df2 <- read_excel("data/w9-tidy-untidy.xlsx", sheet = "df2")
+df3 <- read_excel("data/w9-tidy-untidy.xlsx", sheet = "df3")
+df4 <- read_excel("data/w9-tidy-untidy.xlsx", sheet = "df4")
+df5 <- read_excel("data/w9-tidy-untidy.xlsx", sheet = "df5")
+df6 <- read_excel("data/w9-tidy-untidy.xlsx", sheet = "df6")
+
+```
+
+[**`df1`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df1)
+```
+
+
+[**`df2`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df2)
+```
+
+
+[**`df3`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df3)
+```
+
+
+[**`df4`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df4)
+```
+
+
+
+[**`df5`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df5)
+```
+
+
+
+[**`df6`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df6)
+```
+
+
+
+## Four Functions{.tabset}
+
+1. `pivot_longer()`
+
+2. `pivot_wider()`
+
+3. `separate()`
+
+4. `unite()`
+
+
+
+
+### pivot_longer()
+
+[**EXAMPLE 1**]{style="color: blue;"}
+
+[**`df2`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df2)
+```
+```{r}
+df2 %>% 
+  pivot_longer(cols = c("Bangladesh", "Portugal"), # cols = 2:3 will also work
+               names_to = "country",
+               values_to = "gdp_current_usd")
+```
+
+
+
+[**EXAMPLE 2**]{style="color: blue;"}
+
+[**`df3`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df3)
+```
+**Note that “1999” and “2000” are non-syntactic names (because they don’t start with a letter) so we have to surround them in backticks. **
+
+```{r}
+df3 %>% 
+  pivot_longer(cols = `2015`:`2019`,
+               names_to = "year",
+               values_to = "gdp_current_usd")
+```
+
+### pivot_wider()
+
+[**EXAMPLE**]{style="color: blue;"}
+
+[**`df4`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df4)
+```
+```{r}
+df4 %>% 
+  pivot_wider(names_from = "type",
+              values_from = "totals")
+```
+
+### separate()
+
+[**EXAMPLE 1**]{style="color: blue;"}
+
+[**`df5`**]{style="color: blue;"}
+
+```{r, echo = FALSE}
+DT::datatable(df5)
+```
+
+```{r}
+df5 %>% 
+  separate(iso2_country, into = c("iso2", "country"), sep = "-")
+```
+
+[**EXAMPLE 2**]{style="color: blue;"}
+
+```{r}
+df5 %>% 
+  separate(year, into = c(NA, "year"), sep = 2)
+  
+```
+
+### unite()
+
+[**EXAMPLE**]{style="color: blue;"}
+
+[**`df6`**]{style="color: blue;"}
+```{r, echo = FALSE}
+DT::datatable(df6)
+```
+
+```{r}
+df6 %>% 
+  unite(year, century, year_num, sep = "") # by default _
+```
+## Excercises{.tabset}
+
+**Data for the coming classes:**
+
+<iframe width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRURjFEMzlIWVQ4SzVRTFgzMlBJOTk2QkpIWC4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+
+
+
+
+### [**EXERCISE 1**]{style="color: blue;"}
+
+- File: `w9-datastream.xlsx`
+
+- Sheet: `AAPL-MSFT`
+
+**NOTE**: Revenues are given in thousand USD.
+
+
+
+```{r, echo = FALSE}
+df_am <- read_excel("data/w9-datastream.xlsx", 
+    sheet = "AAPL-MSFT")
+```
+
+```{r, echo = FALSE}
+DT::datatable(df_am)
+```
+
+
+```{r e1, echo = FALSE}
+df_e1 <- df_am %>% 
+  pivot_longer(cols = 2:3,
+              names_to = "v1",
+              values_to = "revenue") %>% 
+  separate(v1, into = c("firm", NA)) %>% 
+  rename(year = Name) %>% 
+  mutate(revenue = revenue/1e6)
+ 
+df_e1 %>% 
+  ggplot(aes(x = year, y = revenue, fill = firm)) +
+  geom_col(position = "dodge") +
+  labs(x = "Year",
+       y = "Revenue (in billion USD)",
+       fill = "") +
+  scale_x_continuous(breaks = 2010:2020) +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+### [**EXERCISE 2**]{style="color: blue;"}
+
+- File: `w9-datastream.xlsx`
+
+- Sheet: `TSLA-AMZN`
+
+**NOTE**: Revenues are given in thousand USD.
+
+```{r, echo = FALSE}
+df_ta <- read_excel("data/w9-datastream.xlsx", 
+    sheet = "TSLA-AMZN")
+```
+
+```{r, echo = FALSE}
+DT::datatable(df_ta)
+```
+
+
+```{r e2, echo = FALSE}
+df_e2 <- df_ta %>% 
+  pivot_longer(cols = `2010`:`2020`,
+              names_to = "year",
+              values_to = "revenue") %>% 
+  separate(Name, into = c("firm", NA)) %>%
+  mutate(revenue = revenue/1e6,
+         year = as.numeric(year))
+
+df_e2 %>% 
+  ggplot(aes(x = year, y = revenue, fill = firm)) +
+  geom_col(position = "dodge") +
+  labs(x = "Year",
+       y = "Revenues (in billion USD)",
+       fill = "") +
+  scale_x_continuous(breaks = 2010:2020) +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+
+### [**EXERCISE 3**]{style="color: blue;"}
+
+- File: `w9-datastream.xlsx`
+
+- Sheet: both
+
+**NOTE**: Revenues are given in thousand USD.
+
+```{r e3, echo = FALSE}
+bind_rows(df_e1, df_e2) %>% 
+  ggplot(aes(x = year, y = revenue, color = firm)) +
+  geom_line(size = 1) +
+  labs(x = "Year",
+       y = "Revenues (in billion USD)",
+       color = "") +
+  scale_x_continuous(breaks = 2010:2020)
+```
+
+[**Another R Hangout Session: Saturday 3.30pm (17 April 2021)**]{style="color: blue;"}
+
+

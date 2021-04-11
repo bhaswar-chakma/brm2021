@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Bhaswar Chakma" />
+
+<meta name="date" content="2021-04-12" />
+
+<title>Week 9</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.17/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Research Methods</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="videos.html">Video Tutorials</a>
+</li>
+<li>
+  <a href="week1.html">Week 1</a>
+</li>
+<li>
+  <a href="week2.html">Week 2</a>
+</li>
+<li>
+  <a href="week3.html">Week 3</a>
+</li>
+<li>
+  <a href="week4.html">Week 4</a>
+</li>
+<li>
+  <a href="week5.html">Week 5</a>
+</li>
+<li>
+  <a href="week6.html">Week 6</a>
+</li>
+<li>
+  <a href="week7.html">Week 7</a>
+</li>
+<li>
+  <a href="week8.html">Week 8</a>
+</li>
+<li>
+  <a href="week9.html">Week 9</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Week 9</h1>
+<h4 class="author">Bhaswar Chakma</h4>
+<h4 class="date">12 April 2021</h4>
+
+</div>
+
+
+<div id="section" class="section level1 tabset">
+<h1 class="tabset"></h1>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+<p><img src="images/tidyr-logo.png" width="368" style="display: block; margin: auto;" /></p>
+</div>
+<div id="tidy-data" class="section level2">
+<h2>Tidy Data</h2>
+<p><img src="images/tidy-data.png" width="960" style="display: block; margin: auto;" /></p>
+<ol style="list-style-type: decimal">
+<li><p>Each variable must have its own column.</p></li>
+<li><p>Each observation must have its own row.</p></li>
+<li><p>Each value must have its own cell.</p></li>
+</ol>
+<p><strong>Data:</strong></p>
+<ul>
+<li><p>Create a folder <code>data</code> in your project directory.</p></li>
+<li><p><a href="https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EtziHFqAtc5BsmTvQ1nc9XIBP8d6H9_ns-vNPvMzCwjQ3g?e=C5Dwv4">Click here to download</a> or check in Teams/Files.</p></li>
+<li><p>Save them in the <code>data</code>folder.</p></li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+library(readxl)</code></pre>
+<pre class="r"><code>df1 &lt;- read_excel(&quot;data/w9-tidy-untidy.xlsx&quot;, sheet = &quot;df1&quot;)
+df2 &lt;- read_excel(&quot;data/w9-tidy-untidy.xlsx&quot;, sheet = &quot;df2&quot;)
+df3 &lt;- read_excel(&quot;data/w9-tidy-untidy.xlsx&quot;, sheet = &quot;df3&quot;)
+df4 &lt;- read_excel(&quot;data/w9-tidy-untidy.xlsx&quot;, sheet = &quot;df4&quot;)
+df5 &lt;- read_excel(&quot;data/w9-tidy-untidy.xlsx&quot;, sheet = &quot;df5&quot;)
+df6 &lt;- read_excel(&quot;data/w9-tidy-untidy.xlsx&quot;, sheet = &quot;df6&quot;)</code></pre>
+<p><span style="color: blue;"><strong><code>df1</code></strong></span></p>
+<div id="htmlwidget-e81793860adb7ed6ca5a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e81793860adb7ed6ca5a">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal"],[2015,2015,2016,2016,2017,2017,2018,2018,2019,2019],[195078678697.23,199313894327.486,221415188000.475,206286022781.894,249711027660.253,221357874718.93,274039092455.306,242313116577.967,302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>year<\/th>\n      <th>gdp_current_usd<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><span style="color: blue;"><strong><code>df2</code></strong></span></p>
+<div id="htmlwidget-0949e6d22b07389bfacc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0949e6d22b07389bfacc">{"x":{"filter":"none","data":[["1","2","3","4","5"],[2015,2016,2017,2018,2019],[195078678697.23,221415188000.475,249711027660.253,274039092455.306,302571254131.135],[199313894327.486,206286022781.894,221357874718.93,242313116577.967,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>Bangladesh<\/th>\n      <th>Portugal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><span style="color: blue;"><strong><code>df3</code></strong></span></p>
+<div id="htmlwidget-e364257f1716ccc9b236" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e364257f1716ccc9b236">{"x":{"filter":"none","data":[["1","2"],["Bangladesh","Portugal"],[195078678697.23,199313894327.486],[221415188000.475,206286022781.894],[249711027660.253,221357874718.93],[274039092455.306,242313116577.967],[302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>2015<\/th>\n      <th>2016<\/th>\n      <th>2017<\/th>\n      <th>2018<\/th>\n      <th>2019<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><span style="color: blue;"><strong><code>df4</code></strong></span></p>
+<div id="htmlwidget-4616ed09d9116b08cea2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4616ed09d9116b08cea2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal"],[2015,2015,2015,2015,2016,2016,2016,2016,2017,2017,2017,2017,2018,2018,2018,2018,2019,2019,2019,2019],["gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population"],[195078678697.23,156256276,199313894327.486,10358076,221415188000.475,157970840,206286022781.894,10325452,249711027660.253,159670593,221357874718.93,10300300,274039092455.306,161356039,242313116577.967,10283822,302571254131.135,163046161,238785085030.988,10269417]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>year<\/th>\n      <th>type<\/th>\n      <th>totals<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><span style="color: blue;"><strong><code>df5</code></strong></span></p>
+<div id="htmlwidget-1d60dc036ebb21d6102f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1d60dc036ebb21d6102f">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal"],[2015,2015,2016,2016,2017,2017,2018,2018,2019,2019],[195078678697.23,199313894327.486,221415188000.475,206286022781.894,249711027660.253,221357874718.93,274039092455.306,242313116577.967,302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>iso2_country<\/th>\n      <th>year<\/th>\n      <th>gdp_current_usd<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><span style="color: blue;"><strong><code>df6</code></strong></span></p>
+<div id="htmlwidget-eeb5c171e5df4b48d36a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eeb5c171e5df4b48d36a">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal"],["20","20","20","20","20","20","20","20","20","20"],["15","15","16","16","17","17","18","18","19","19"],[195078678697.23,199313894327.486,221415188000.475,206286022781.894,249711027660.253,221357874718.93,274039092455.306,242313116577.967,302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>century<\/th>\n      <th>year_num<\/th>\n      <th>gdp_current_usd<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="four-functions" class="section level2 tabset">
+<h2 class="tabset">Four Functions</h2>
+<ol style="list-style-type: decimal">
+<li><p><code>pivot_longer()</code></p></li>
+<li><p><code>pivot_wider()</code></p></li>
+<li><p><code>separate()</code></p></li>
+<li><p><code>unite()</code></p></li>
+</ol>
+<div id="pivot_longer" class="section level3">
+<h3>pivot_longer()</h3>
+<p><span style="color: blue;"><strong>EXAMPLE 1</strong></span></p>
+<p><span style="color: blue;"><strong><code>df2</code></strong></span></p>
+<div id="htmlwidget-ec8b71f21d93e93bc002" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ec8b71f21d93e93bc002">{"x":{"filter":"none","data":[["1","2","3","4","5"],[2015,2016,2017,2018,2019],[195078678697.23,221415188000.475,249711027660.253,274039092455.306,302571254131.135],[199313894327.486,206286022781.894,221357874718.93,242313116577.967,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>Bangladesh<\/th>\n      <th>Portugal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>df2 %&gt;% 
+  pivot_longer(cols = c(&quot;Bangladesh&quot;, &quot;Portugal&quot;), # cols = 2:3 will also work
+               names_to = &quot;country&quot;,
+               values_to = &quot;gdp_current_usd&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["gdp_current_usd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2015","2":"Bangladesh","3":"195078678697"},{"1":"2015","2":"Portugal","3":"199313894327"},{"1":"2016","2":"Bangladesh","3":"221415188000"},{"1":"2016","2":"Portugal","3":"206286022782"},{"1":"2017","2":"Bangladesh","3":"249711027660"},{"1":"2017","2":"Portugal","3":"221357874719"},{"1":"2018","2":"Bangladesh","3":"274039092455"},{"1":"2018","2":"Portugal","3":"242313116578"},{"1":"2019","2":"Bangladesh","3":"302571254131"},{"1":"2019","2":"Portugal","3":"238785085031"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p><span style="color: blue;"><strong>EXAMPLE 2</strong></span></p>
+<p><span style="color: blue;"><strong><code>df3</code></strong></span></p>
+<p><div id="htmlwidget-d35b942ccf8ce0b989bf" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d35b942ccf8ce0b989bf">{"x":{"filter":"none","data":[["1","2"],["Bangladesh","Portugal"],[195078678697.23,199313894327.486],[221415188000.475,206286022781.894],[249711027660.253,221357874718.93],[274039092455.306,242313116577.967],[302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>2015<\/th>\n      <th>2016<\/th>\n      <th>2017<\/th>\n      <th>2018<\/th>\n      <th>2019<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script> <strong>Note that “1999” and “2000” are non-syntactic names (because they don’t start with a letter) so we have to surround them in backticks. </strong></p>
+<pre class="r"><code>df3 %&gt;% 
+  pivot_longer(cols = `2015`:`2019`,
+               names_to = &quot;year&quot;,
+               values_to = &quot;gdp_current_usd&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]},{"label":["gdp_current_usd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bangladesh","2":"2015","3":"195078678697"},{"1":"Bangladesh","2":"2016","3":"221415188000"},{"1":"Bangladesh","2":"2017","3":"249711027660"},{"1":"Bangladesh","2":"2018","3":"274039092455"},{"1":"Bangladesh","2":"2019","3":"302571254131"},{"1":"Portugal","2":"2015","3":"199313894327"},{"1":"Portugal","2":"2016","3":"206286022782"},{"1":"Portugal","2":"2017","3":"221357874719"},{"1":"Portugal","2":"2018","3":"242313116578"},{"1":"Portugal","2":"2019","3":"238785085031"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="pivot_wider" class="section level3">
+<h3>pivot_wider()</h3>
+<p><span style="color: blue;"><strong>EXAMPLE</strong></span></p>
+<p><span style="color: blue;"><strong><code>df4</code></strong></span></p>
+<div id="htmlwidget-d3297fee79ea9fa19850" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d3297fee79ea9fa19850">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal","Bangladesh","Bangladesh","Portugal","Portugal"],[2015,2015,2015,2015,2016,2016,2016,2016,2017,2017,2017,2017,2018,2018,2018,2018,2019,2019,2019,2019],["gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population","gdp_current_usd","population"],[195078678697.23,156256276,199313894327.486,10358076,221415188000.475,157970840,206286022781.894,10325452,249711027660.253,159670593,221357874718.93,10300300,274039092455.306,161356039,242313116577.967,10283822,302571254131.135,163046161,238785085030.988,10269417]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>year<\/th>\n      <th>type<\/th>\n      <th>totals<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>df4 %&gt;% 
+  pivot_wider(names_from = &quot;type&quot;,
+              values_from = &quot;totals&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["gdp_current_usd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bangladesh","2":"2015","3":"195078678697","4":"156256276"},{"1":"Portugal","2":"2015","3":"199313894327","4":"10358076"},{"1":"Bangladesh","2":"2016","3":"221415188000","4":"157970840"},{"1":"Portugal","2":"2016","3":"206286022782","4":"10325452"},{"1":"Bangladesh","2":"2017","3":"249711027660","4":"159670593"},{"1":"Portugal","2":"2017","3":"221357874719","4":"10300300"},{"1":"Bangladesh","2":"2018","3":"274039092455","4":"161356039"},{"1":"Portugal","2":"2018","3":"242313116578","4":"10283822"},{"1":"Bangladesh","2":"2019","3":"302571254131","4":"163046161"},{"1":"Portugal","2":"2019","3":"238785085031","4":"10269417"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="separate" class="section level3">
+<h3>separate()</h3>
+<p><span style="color: blue;"><strong>EXAMPLE 1</strong></span></p>
+<p><span style="color: blue;"><strong><code>df5</code></strong></span></p>
+<div id="htmlwidget-ad4a4d5befffeb27c335" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ad4a4d5befffeb27c335">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal","BD-Bangladesh","PT-Portugal"],[2015,2015,2016,2016,2017,2017,2018,2018,2019,2019],[195078678697.23,199313894327.486,221415188000.475,206286022781.894,249711027660.253,221357874718.93,274039092455.306,242313116577.967,302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>iso2_country<\/th>\n      <th>year<\/th>\n      <th>gdp_current_usd<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>df5 %&gt;% 
+  separate(iso2_country, into = c(&quot;iso2&quot;, &quot;country&quot;), sep = &quot;-&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["iso2"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["gdp_current_usd"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"BD","2":"Bangladesh","3":"2015","4":"195078678697"},{"1":"PT","2":"Portugal","3":"2015","4":"199313894327"},{"1":"BD","2":"Bangladesh","3":"2016","4":"221415188000"},{"1":"PT","2":"Portugal","3":"2016","4":"206286022782"},{"1":"BD","2":"Bangladesh","3":"2017","4":"249711027660"},{"1":"PT","2":"Portugal","3":"2017","4":"221357874719"},{"1":"BD","2":"Bangladesh","3":"2018","4":"274039092455"},{"1":"PT","2":"Portugal","3":"2018","4":"242313116578"},{"1":"BD","2":"Bangladesh","3":"2019","4":"302571254131"},{"1":"PT","2":"Portugal","3":"2019","4":"238785085031"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p><span style="color: blue;"><strong>EXAMPLE 2</strong></span></p>
+<pre class="r"><code>df5 %&gt;% 
+  separate(year, into = c(NA, &quot;year&quot;), sep = 2)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["iso2_country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]},{"label":["gdp_current_usd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BD-Bangladesh","2":"15","3":"195078678697"},{"1":"PT-Portugal","2":"15","3":"199313894327"},{"1":"BD-Bangladesh","2":"16","3":"221415188000"},{"1":"PT-Portugal","2":"16","3":"206286022782"},{"1":"BD-Bangladesh","2":"17","3":"249711027660"},{"1":"PT-Portugal","2":"17","3":"221357874719"},{"1":"BD-Bangladesh","2":"18","3":"274039092455"},{"1":"PT-Portugal","2":"18","3":"242313116578"},{"1":"BD-Bangladesh","2":"19","3":"302571254131"},{"1":"PT-Portugal","2":"19","3":"238785085031"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="unite" class="section level3">
+<h3>unite()</h3>
+<p><span style="color: blue;"><strong>EXAMPLE</strong></span></p>
+<p><span style="color: blue;"><strong><code>df6</code></strong></span> <div id="htmlwidget-0425211d95a62dbe5e77" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0425211d95a62dbe5e77">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal","Bangladesh","Portugal"],["20","20","20","20","20","20","20","20","20","20"],["15","15","16","16","17","17","18","18","19","19"],[195078678697.23,199313894327.486,221415188000.475,206286022781.894,249711027660.253,221357874718.93,274039092455.306,242313116577.967,302571254131.135,238785085030.988]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country<\/th>\n      <th>century<\/th>\n      <th>year_num<\/th>\n      <th>gdp_current_usd<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+<pre class="r"><code>df6 %&gt;% 
+  unite(year, century, year_num, sep = &quot;&quot;) # by default _</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]},{"label":["gdp_current_usd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bangladesh","2":"2015","3":"195078678697"},{"1":"Portugal","2":"2015","3":"199313894327"},{"1":"Bangladesh","2":"2016","3":"221415188000"},{"1":"Portugal","2":"2016","3":"206286022782"},{"1":"Bangladesh","2":"2017","3":"249711027660"},{"1":"Portugal","2":"2017","3":"221357874719"},{"1":"Bangladesh","2":"2018","3":"274039092455"},{"1":"Portugal","2":"2018","3":"242313116578"},{"1":"Bangladesh","2":"2019","3":"302571254131"},{"1":"Portugal","2":"2019","3":"238785085031"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="excercises" class="section level2 tabset">
+<h2 class="tabset">Excercises</h2>
+<p><strong>Data for the coming classes:</strong></p>
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRURjFEMzlIWVQ4SzVRTFgzMlBJOTk2QkpIWC4u&amp;embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
+</iframe>
+<div id="exercise-1" class="section level3">
+<h3><span style="color: blue;"><strong>EXERCISE 1</strong></span></h3>
+<ul>
+<li><p>File: <code>w9-datastream.xlsx</code></p></li>
+<li><p>Sheet: <code>AAPL-MSFT</code></p></li>
+</ul>
+<p><strong>NOTE</strong>: Revenues are given in thousand USD.</p>
+<div id="htmlwidget-7d840754f0cc9f6e5f7e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7d840754f0cc9f6e5f7e">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11"],[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],[65067000,108598000,156508000,170910000,182795000,233715000,215639000,229234000,265595000,260174000,274515000],[61989000,69950000,73723000,77849000,86833000,93580000,85320000,89950000,110360000,125843000,143015000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>APPLE INC - NET SALES OR REVENUES<\/th>\n      <th>MICROSOFT CORP - NET SALES OR REVENUES<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><img src="week9_files/figure-html/e1-1.png" width="672" /></p>
+</div>
+<div id="exercise-2" class="section level3">
+<h3><span style="color: blue;"><strong>EXERCISE 2</strong></span></h3>
+<ul>
+<li><p>File: <code>w9-datastream.xlsx</code></p></li>
+<li><p>Sheet: <code>TSLA-AMZN</code></p></li>
+</ul>
+<p><strong>NOTE</strong>: Revenues are given in thousand USD.</p>
+<div id="htmlwidget-8015e0a697821a09b093" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8015e0a697821a09b093">{"x":{"filter":"none","data":[["1","2"],["TESLA INC - NET SALES OR REVENUES","AMAZON.COM INC - NET SALES OR REVENUES"],[116744,34204000],[204242,48077000],[413256,61093000],[2013496,74452000],[3198356,88988000],[4046025,107006000],[7000132,135987000],[11758751,177866000],[21461268,232887000],[24578000,280522000],[31536000,386064000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>2010<\/th>\n      <th>2011<\/th>\n      <th>2012<\/th>\n      <th>2013<\/th>\n      <th>2014<\/th>\n      <th>2015<\/th>\n      <th>2016<\/th>\n      <th>2017<\/th>\n      <th>2018<\/th>\n      <th>2019<\/th>\n      <th>2020<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><img src="week9_files/figure-html/e2-1.png" width="672" /></p>
+</div>
+<div id="exercise-3" class="section level3">
+<h3><span style="color: blue;"><strong>EXERCISE 3</strong></span></h3>
+<ul>
+<li><p>File: <code>w9-datastream.xlsx</code></p></li>
+<li><p>Sheet: both</p></li>
+</ul>
+<p><strong>NOTE</strong>: Revenues are given in thousand USD.</p>
+<p><img src="week9_files/figure-html/e3-1.png" width="672" /></p>
+<p><span style="color: blue;"><strong>Another R Hangout Session: Saturday 3.30pm (17 April 2021)</strong></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
