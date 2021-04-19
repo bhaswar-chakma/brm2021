@@ -317,6 +317,9 @@ $(document).ready(function () {
 <li>
   <a href="week9.html">Week 9</a>
 </li>
+<li>
+  <a href="week10.html">Week 10</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -442,19 +445,19 @@ $(document).ready(function () {
 library(readxl)
 read_excel(&quot;data/w4/mcap20210221.xlsx&quot;, sheet = &quot;global100b&quot;) # i put my data in the subfolder w4</code></pre>
 <pre><code>## # A tibble: 157 x 5
-##    `Updated at 19:~ `Company Common~ `Company Market~ `Country of Hea~
-##    &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           
-##  1 DE.N             Deere &amp; Co                   104. United States o~
-##  2 VOWG_p.DE        Volkswagen AG                110. Germany         
-##  3 AXP.N            American Expres~             106. United States o~
-##  4 IBM.N            International B~             106. United States o~
-##  5 UNP.N            Union Pacific C~             140. United States o~
-##  6 AAPL.OQ          Apple Inc                   2180. United States o~
-##  7 MCD.N            Mcdonald&#39;s Corp              158. United States o~
-##  8 NKE.N            Nike Inc                     224. United States o~
-##  9 TSLA.OQ          Tesla Inc                    750. United States o~
-## 10 PRX.AS           Prosus NV                    212. Netherlands     
-## # ... with 147 more rows, and 1 more variable: `TRBC Industry Name` &lt;chr&gt;</code></pre>
+##    `Updated at 19:02~ `Company Common Name` `Company Market ~ `Country of Headq~
+##    &lt;chr&gt;              &lt;chr&gt;                             &lt;dbl&gt; &lt;chr&gt;             
+##  1 DE.N               Deere &amp; Co                         104. United States of ~
+##  2 VOWG_p.DE          Volkswagen AG                      110. Germany           
+##  3 AXP.N              American Express Co                106. United States of ~
+##  4 IBM.N              International Busine~              106. United States of ~
+##  5 UNP.N              Union Pacific Corp                 140. United States of ~
+##  6 AAPL.OQ            Apple Inc                         2180. United States of ~
+##  7 MCD.N              Mcdonald&#39;s Corp                    158. United States of ~
+##  8 NKE.N              Nike Inc                           224. United States of ~
+##  9 TSLA.OQ            Tesla Inc                          750. United States of ~
+## 10 PRX.AS             Prosus NV                          212. Netherlands       
+## # ... with 147 more rows, and 1 more variable: TRBC Industry Name &lt;chr&gt;</code></pre>
 <pre class="r"><code>df_global &lt;- read_excel(&quot;data/w4/mcap20210221.xlsx&quot;, sheet = &quot;global100b&quot;)
 
 ######################
@@ -462,26 +465,26 @@ read_excel(&quot;data/w4/mcap20210221.xlsx&quot;, sheet = &quot;global100b&quot;
 ######################
 head(df_global) # first six observations</code></pre>
 <pre><code>## # A tibble: 6 x 5
-##   `Updated at 19:~ `Company Common~ `Company Market~ `Country of Hea~
-##   &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           
-## 1 DE.N             Deere &amp; Co                   104. United States o~
-## 2 VOWG_p.DE        Volkswagen AG                110. Germany         
-## 3 AXP.N            American Expres~             106. United States o~
-## 4 IBM.N            International B~             106. United States o~
-## 5 UNP.N            Union Pacific C~             140. United States o~
-## 6 AAPL.OQ          Apple Inc                   2180. United States o~
-## # ... with 1 more variable: `TRBC Industry Name` &lt;chr&gt;</code></pre>
+##   `Updated at 19:02~ `Company Common Name`  `Company Market ~ `Country of Headq~
+##   &lt;chr&gt;              &lt;chr&gt;                              &lt;dbl&gt; &lt;chr&gt;             
+## 1 DE.N               Deere &amp; Co                          104. United States of ~
+## 2 VOWG_p.DE          Volkswagen AG                       110. Germany           
+## 3 AXP.N              American Express Co                 106. United States of ~
+## 4 IBM.N              International Busines~              106. United States of ~
+## 5 UNP.N              Union Pacific Corp                  140. United States of ~
+## 6 AAPL.OQ            Apple Inc                          2180. United States of ~
+## # ... with 1 more variable: TRBC Industry Name &lt;chr&gt;</code></pre>
 <pre class="r"><code>tail(df_global) # last six observations</code></pre>
 <pre><code>## # A tibble: 6 x 5
-##   `Updated at 19:~ `Company Common~ `Company Market~ `Country of Hea~
-##   &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           
-## 1 T.N              AT&amp;T Inc                     207. United States o~
-## 2 TD.TO            Toronto-Dominio~             109. Canada          
-## 3 RELI.NS          Reliance Indust~             189. India           
-## 4 UPS.N            United Parcel S~             139. United States o~
-## 5 601398.SS        Industrial and ~             288. China           
-## 6 601939.SS        China Construct~             201. China           
-## # ... with 1 more variable: `TRBC Industry Name` &lt;chr&gt;</code></pre>
+##   `Updated at 19:02~ `Company Common Name`   `Company Market~ `Country of Headq~
+##   &lt;chr&gt;              &lt;chr&gt;                              &lt;dbl&gt; &lt;chr&gt;             
+## 1 T.N                AT&amp;T Inc                            207. United States of ~
+## 2 TD.TO              Toronto-Dominion Bank               109. Canada            
+## 3 RELI.NS            Reliance Industries Ltd             189. India             
+## 4 UPS.N              United Parcel Service ~             139. United States of ~
+## 5 601398.SS          Industrial and Commerc~             288. China             
+## 6 601939.SS          China Construction Ban~             201. China             
+## # ... with 1 more variable: TRBC Industry Name &lt;chr&gt;</code></pre>
 <pre class="r"><code>######################
 # Check column names
 ######################
@@ -504,7 +507,7 @@ nrow(df_global)</code></pre>
 # Structure &amp; Class
 #####################
 str(df_global)</code></pre>
-<pre><code>## tibble [157 x 5] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tibble[,5] [157 x 5] (S3: tbl_df/tbl/data.frame)
 ##  $ Updated at 19:02:34    : chr [1:157] &quot;DE.N&quot; &quot;VOWG_p.DE&quot; &quot;AXP.N&quot; &quot;IBM.N&quot; ...
 ##  $ Company Common Name    : chr [1:157] &quot;Deere &amp; Co&quot; &quot;Volkswagen AG&quot; &quot;American Express Co&quot; &quot;International Business Machines Corp&quot; ...
 ##  $ Company Market Cap     : num [1:157] 104 110 106 106 140 ...
@@ -513,11 +516,11 @@ str(df_global)</code></pre>
 <pre class="r"><code>glimpse(df_global)</code></pre>
 <pre><code>## Rows: 157
 ## Columns: 5
-## $ `Updated at 19:02:34`     &lt;chr&gt; &quot;DE.N&quot;, &quot;VOWG_p.DE&quot;, &quot;AXP.N&quot;, &quot;IBM.N&quot;, &quot;U...
-## $ `Company Common Name`     &lt;chr&gt; &quot;Deere &amp; Co&quot;, &quot;Volkswagen AG&quot;, &quot;American ...
-## $ `Company Market Cap`      &lt;dbl&gt; 103.7590, 110.2252, 106.1041, 106.0269, 1...
-## $ `Country of Headquarters` &lt;chr&gt; &quot;United States of America&quot;, &quot;Germany&quot;, &quot;U...
-## $ `TRBC Industry Name`      &lt;chr&gt; &quot;Heavy Machinery &amp; Vehicles&quot;, &quot;Auto &amp; Tru...</code></pre>
+## $ `Updated at 19:02:34`     &lt;chr&gt; &quot;DE.N&quot;, &quot;VOWG_p.DE&quot;, &quot;AXP.N&quot;, &quot;IBM.N&quot;, &quot;UNP.~
+## $ `Company Common Name`     &lt;chr&gt; &quot;Deere &amp; Co&quot;, &quot;Volkswagen AG&quot;, &quot;American Exp~
+## $ `Company Market Cap`      &lt;dbl&gt; 103.7590, 110.2252, 106.1041, 106.0269, 140.~
+## $ `Country of Headquarters` &lt;chr&gt; &quot;United States of America&quot;, &quot;Germany&quot;, &quot;Unit~
+## $ `TRBC Industry Name`      &lt;chr&gt; &quot;Heavy Machinery &amp; Vehicles&quot;, &quot;Auto &amp; Truck ~</code></pre>
 <pre class="r"><code>class(df_global)</code></pre>
 <pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <pre class="r"><code>#########

@@ -220,7 +220,7 @@ df6 %>%
 
 
 
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 df_am <- read_excel("data/w9-datastream.xlsx", 
     sheet = "AAPL-MSFT")
 ```
@@ -230,7 +230,7 @@ DT::datatable(df_am)
 ```
 
 
-```{r e1, echo = FALSE}
+```{r e1, echo = TRUE}
 df_e1 <- df_am %>% 
   pivot_longer(cols = 2:3,
               names_to = "v1",
@@ -257,7 +257,7 @@ df_e1 %>%
 
 **NOTE**: Revenues are given in thousand USD.
 
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 df_ta <- read_excel("data/w9-datastream.xlsx", 
     sheet = "TSLA-AMZN")
 ```
@@ -267,7 +267,7 @@ DT::datatable(df_ta)
 ```
 
 
-```{r e2, echo = FALSE}
+```{r e2, echo = TRUE}
 df_e2 <- df_ta %>% 
   pivot_longer(cols = `2010`:`2020`,
               names_to = "year",
@@ -295,7 +295,7 @@ df_e2 %>%
 
 **NOTE**: Revenues are given in thousand USD.
 
-```{r e3, echo = FALSE}
+```{r e3, echo = TRUE}
 bind_rows(df_e1, df_e2) %>% 
   ggplot(aes(x = year, y = revenue, color = firm)) +
   geom_line(size = 1) +
