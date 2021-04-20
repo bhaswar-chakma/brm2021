@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 - Review `tidyr` functions
 
-- factor variable
+    - messy data sets
 
 - `if_else()`
 
@@ -202,7 +202,7 @@ gapminder %>%
   filter(country == "France" | country == "Japan" | country == "Australia")
 ```
 
-- Option 1: use `%in%`
+- Option 2: use `%in%`
 
 
 ```
@@ -245,3 +245,188 @@ gapminder %>%
 
 ```
 
+### Dates
+
+We will use the package `lubridate`
+```{r}
+library(lubridate)
+```
+
+- `ymd()`
+
+```{r}
+ymd("2021-12-01")
+class(ymd("2021-12-01"))
+```
+- `ydm()`
+
+```{r}
+ydm("2021-01-12")
+class(ymd("2021-01-12"))
+```
+- `dmy()`
+
+```{r}
+dmy("01-12-2021")
+class(dmy("01-12-2021"))
+```
+
+**Extract Month**
+
+```{r}
+month(dmy("01-12-2021")) # month() is applied to a date object
+month(dmy("01-12-2021"), label = TRUE) # get month names
+```
+**Extract Year**
+
+```{r}
+year(dmy("01-12-2021")) # year() is applied to a date object
+```
+**Extract Day**
+
+```{r}
+day(dmy("01-12-2021")) # date() is applied to a date object
+```
+
+## More Messy Data{.tabset}
+
+- File: `Have_you_met_Ted_1_38_.xlsx`
+
+  - The number 38 will change if we get more responses
+  
+Please fill out the [form.](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRURjFEMzlIWVQ4SzVRTFgzMlBJOTk2QkpIWC4u)
+
+```{r}
+df <- read_excel("data/Have you met _Ted__(1-38).xlsx")
+
+df_renamed <- df %>% 
+  select(6:15) %>% 
+  rename(name = 1,
+         id = 2,
+         gender = 3,
+         date_of_birth = 4,
+         struggling = 5,
+         reason_struggle = 6,
+         practice_r = 7,
+         social_media = 8,
+         country = 9,
+         himym = 10)
+```
+
+
+### [**Exercise 1**]{style="color: blue;"}
+
+```{r}
+table(df_renamed$country)
+```
+1. Fix the variable `country` using `case_when()` ; store it as `df_renamed2`
+
+  - BRAZIL becomes Brazil
+  - FRANCE becomes France
+
+```{r, echo = FALSE}
+df_renamed2 <- df_renamed %>% 
+  mutate(country = case_when(country == "BRAZIL" ~ "Brazil",
+                             country == "FRANCE" ~ "France",
+                             country != "Brazil" | country != "France" ~ country))
+```
+  
+
+```{r, echo = TRUE}
+table(df_renamed$country)
+
+table(df_renamed2$country)
+```
+
+2. Generate a dummy variable `international`: 1 if international student; otherwise 0
+
+```{r, eval = FALSE}
+df_renamed %>%
+  mutate(international = if_else(country != "Portugal", 1, 0))
+  
+```
+
+
+
+A better solution `str_to_title()`
+
+```{r, eval = FALSE}
+df_renamed %>% 
+  mutate(country2 = str_to_title(country))
+```
+
+### [**Exercise 2**]{style="color: blue;"}
+
+0. Select only `practice_r`; `social_media`; `gender`
+
+1. What's wrong with 
+
+  - `practice_r` ?
+  
+  - `social_media`?
+  
+2. Fix them; create two new variables `practice_r2` and `social_media2`
+
+3. `practic_r2`: weekly averages
+
+  - Update`practice_r2` finding daily averages (just divide by 7)
+
+4. Store it as `df_time`
+
+
+```{r, echo = FALSE}
+df_time <- df_renamed %>%
+  select(name, practice_r, social_media, gender) %>% 
+  mutate(practice_r2 = if_else(practice_r == "3h", 180, as.numeric(practice_r)),
+         social_media2 = if_else(social_media == "120min", 120, as.numeric(social_media)),
+         practice_r2 = practice_r2/7) 
+```
+
+5. Produce the following plots
+
+
+
+```{r, echo = FALSE}
+df_time %>% 
+  ggplot(aes(x = practice_r2, y = social_media2, color = gender)) +
+  geom_point() 
+```
+
+
+```{r, echo = FALSE}
+df_time %>% 
+  ggplot(aes(x = gender, y = social_media2, fill = gender)) +
+  geom_boxplot() 
+```
+
+
+### [**Exercise 3**]{style="color: blue;"}
+
+Use `df_renamed`
+
+0. Select `name` and `date_of_birth`
+
+1. Can you find the oldest student?
+
+```{r, echo = FALSE}
+df_renamed %>% 
+  select(name, date_of_birth) %>% 
+  mutate(date_of_birth = ymd(date_of_birth)) %>% 
+  arrange(date_of_birth)
+```
+
+
+2. Produce the following plot
+
+```{r, echo = FALSE}
+df_renamed %>% 
+  select(name, date_of_birth) %>% 
+  mutate(date_of_birth = ymd(date_of_birth),
+         month = month(date_of_birth, label = TRUE)) %>% 
+  ggplot(aes(x = month)) +
+  geom_bar() +
+  labs(title = "Birthdays")
+```
+
+
+[**Another R Hangout Session: Saturday 3.30pm (24 April 2021)**]{style="color: blue;"}
