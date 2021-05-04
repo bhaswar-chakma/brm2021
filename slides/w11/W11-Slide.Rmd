@@ -1,0 +1,262 @@
+---
+title: "Week 11"
+subtitle: "*Business Research Methods*"
+author: "**Bhaswar Chakma**"
+date: "04 May 2021"
+fontsize: 14pt # For beamer only the fontsizes 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt and 20pt are implemented as document options. Putting random numbers there won't work
+
+#logo of CLSBE
+header-includes: 
+  - \titlegraphic{\includegraphics[scale = .5]{logo.png}}
+
+# 16:9 Ratio
+classoption: "aspectratio=169"  
+
+output:
+  beamer_presentation:
+    incremental: false
+    theme: "Madrid"
+    slide_level: 3
+    template: remove-section-name.tex 
+
+#Remove Sec: https://stackoverflow.com/questions/42439763/rmarkdown-beamer-presentation-how-to-not-print-section-slides
+
+#Color text: https://community.rstudio.com/t/highlighting-text-inline-in-rmarkdown-or-bookdown-pdf/35118/4
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+# Learning Objectives
+
+- `factor()`
+
+- `broom::`
+
+  - `tidy()`
+  
+  - `augment()`
+  
+  - `glance()`
+
+
+# `factor()`
+
+- to work with categorical variables, variables that have a fixed and known set of possible values. 
+
+- to display character vectors in a non-alphabetical order.
+
+---
+
+```{r}
+# Create a vector of country names using c()
+country1 <- c("China", "Bangladesh", "Australia")
+
+# Check type
+typeof(country1)
+```
+
+
+---
+
+
+```{r}
+# Convert to factor
+country2 <- factor(country1)
+country2 
+```
+
+- By default the levels of a factor are arranged alphabetically
+
+---
+
+```{r}
+# Sort using sort()
+sort(country1)
+sort(country2) 
+```
+  
+---
+
+```{r}
+# Factor with different Levels
+country3 <- factor(
+  country1,
+  levels = c("Bangladesh", "China", "Australia")
+)
+
+sort(country3)
+```
+
+## Example: Plot
+
+```{r, eval = FALSE}
+library(tidyverse)
+```
+
+
+`?mpg`
+
+```{r}
+table(mpg$drv)
+```
+
+---
+
+`drv` variable: 
+
+- f = front-wheel drive
+
+- r = rear wheel drive
+    
+- 4 = 4wd
+
+
+```{r, eval = FALSE}
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar() 
+
+```
+
+---
+
+```{r , echo = FALSE}
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(size = 25),
+        axis.text.y = element_text(size = 20),
+        axis.title = element_text(size = 25),
+        legend.position = "none")
+
+```
+
+
+---
+
+```{r, eval = FALSE}
+mpg %>% 
+  # Generate a factor variable: drv2
+  mutate(
+    drv2 = factor(drv, levels = c("r", "4", "f"))
+  ) %>% 
+  ggplot(aes(x = drv2, fill = drv)) +
+  geom_bar() 
+
+```
+
+---
+
+```{r, echo = FALSE}
+mpg %>% 
+  # Generate a factor variable: drv2
+  mutate(
+    drv2 = factor(drv, levels = c("r", "4", "f"))
+  ) %>% 
+  ggplot(aes(x = drv2, fill = drv)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(size = 25),
+        axis.text.y = element_text(size = 20),
+        axis.title = element_text(size = 25),
+        legend.position = "none")
+
+```
+                  
+
+## Example: Regression
+
+```{r, warning = FALSE, message = FALSE}
+library(MASS)
+```
+
+```{r}
+# From last class
+Boston <- Boston %>%
+  mutate(ctax = case_when(
+    tax < 250 ~ "low",
+    tax > 300 ~ "high",
+    TRUE ~ "medium"
+  ))
+
+```
+
+---
+
+```{r}
+# Today
+# Generate new variables ctax2 and ctax3 (ctax as factor)
+Boston <- Boston %>%
+  mutate(ctax2 = factor(ctax),
+         ctax3 = factor(
+           ctax,
+           levels = c("low", "high", "medium"))
+         )
+```
+
+---
+
+```{r}
+# From last class
+m4 <- lm(medv ~ lstat + ctax, data = Boston)
+m4
+```
+
+---
+```{r}
+# Today! ctax2
+m4a <- lm(medv ~ lstat + ctax2, data = Boston)
+m4a
+```
+
+---
+
+```{r}
+# Today! ctax3
+m4b <- lm(medv ~ lstat + ctax3, data = Boston)
+m4b
+```
+
+# broom
+
+```{r, echo = FALSE, fig.align='center', out.width = "40%"}
+knitr::include_graphics("images/broom-logo.png")
+```
+
+---
+
+- `broom::tidy()`
+
+- `broom::augment()`
+
+- `broom::glance()`
+
+
+---
+
+```{r}
+# Use the model m4
+summary(m4)
+```
+
+---
+```{r}
+broom::tidy(m4)
+```
+
+---
+```{r}
+broom::augment(m4)
+```
+
+---
+
+```{r}
+broom::glance(m4)
+```
+
+# Questions?
+  
+bhaswar.chakma@ucp.pt

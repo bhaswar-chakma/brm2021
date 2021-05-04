@@ -1,0 +1,48 @@
+## [**EXERCISE 1**]{style="color: blue;"}
+
+The data set in CEOSAL2.csv contains information on chief executive officers for
+U.S. corporations. The variable `salary` is annual compensation, in thousands of dollars,
+and `ceoten` is prior number of years as company CEO.
+
+```{r}
+library(tidyverse)
+library(wooldridge)
+ceosal2 <- read_csv("https://www.dropbox.com/s/tqb8a51oixhs6zc/CEOSAL2.csv?dl=1")
+options(scipen=999) # to disable scientific notation
+```
+
+1. Find the average salary and the average tenure in the sample.
+
+
+2. How many CEOs are in their first year as CEO (that is, `ceoten==0`)?
+
+
+3. What is the longest tenure as a CEO?
+
+
+4. Estimate the simple regression model:
+
+$$log(salary) =  \beta_{0} +  \beta_{1} ceoten + u.$$
+
+What is the (approximate) predicted percentage increase in salary given one more year as a CEO?
+
+
+5. Estimate a model relating annual salary to firm sales (`sales`) and market value (`mktval`):
+$$log(salary) =  \beta_{0} +  \beta_{1}log(sales) + \beta_{2}log(mktval) + u$$
+
+    - n ? 
+
+    - R-squared ?
+
+
+6. Add `profits` to the previous model, that is
+
+$$log(salary) =  \beta_{0} +  \beta_{1}log(sales) + \beta_{2}log(mktval) + \beta_{3} profits + u$$
+
+Why can this variable not be included in logarithmic form?
+
+
+7. Add `ceoten` to the previous model, that is
+$$log(salary) =  \beta_{0} +  \beta_{1}log(sales) + \beta_{2}log(mktval) + \beta_{3} profits + \beta_{4}ceoten + u$$
+
+What is the estimated percentage return for another year of CEO tenure, holding other factors fixed?

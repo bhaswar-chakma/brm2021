@@ -12,13 +12,6 @@ Last Updated: `r lubridate::today()`
 - [Backup Zoom Link](https://videoconf-colibri.zoom.us/j/83732635452?pwd=UjJPRVZvNU02d1UzUTB4bTA3Vm0xUT09) 
 
 
-### Announcement
-
-**Another R Hangout Session: Saturday 3.30pm (24 April 2021)**
-
-  - To join Teams, click the link below or use the code (see [Week 1](https://brmlab2021.netlify.app/week1.html) for instructions)
-
-
 ### Links
 
 - [Data](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EtziHFqAtc5BsmTvQ1nc9XIBP8d6H9_ns-vNPvMzCwjQ3g?e=C5Dwv4)

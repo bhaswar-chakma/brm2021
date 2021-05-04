@@ -29,3 +29,7 @@ title: "Videos"
       - the video is old, but still relevant
       - your numbers will be different
       - the webpage looks different now
+
+## tidyr
+
+- [Click here](https://www.youtube.com/playlist?list=PLEwBfSLLOlGLsb_2SvwENyOARWWp65W12)

@@ -1,0 +1,120 @@
+---
+title: "Week 11"
+date: "04 May 2021"
+author: "Bhaswar Chakma"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = FALSE, warning = FALSE, message = FALSE)
+```
+
+
+
+[**Click here for slide and code **](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/Ejl1y-2s1rJOs4pOJLiYGk8Bn49UaWzaDzpO581c8MBezA?e=kffn1j)
+
+# Problems{.tabset}
+
+```
+library(tidyverse)
+library(wooldridge)
+library(broom)
+```
+
+
+## [Problem 1: CEO Salary]{style="color: blue;"}
+
+[**SUBMIT PROBLEM 1 ANSWERS HERE**](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUNElIS1k1SFBCS1o2SDdKUk8xV1dGMjFUMy4u)
+
+The data set `wooldridge::ceosal1` contains information on CEOs.
+
+  - `salary`: salary in thousands of dollars.
+  
+  - `roe`: average return on equity (roe) for the CEO’s firm for the previous three
+years.
+
+1. *Find sample size; average, minimum, and maximum salary.*
+
+
+Estimate the model $$salary = \beta_{0} + \beta_{1}roe + u.$$
+
+2. *If `roe` is 0, what is the predicted salary?*
+  
+3. *If `roe` increases by one percentage point, then the salary is predicted to change by?*
+  
+4. *If `roe` is 30, what is the predicted salary?*
+
+5. *The firm’s return on equity explains only about 1.3% of the variation in salaries for this sample of 209 CEOs. That means that 98.7% of the salary variations for these CEOs is left unexplained!* --- True or False?
+
+
+
+
+
+
+6. Create a data frame containing the first 15 observations in the CEO data set, along with the fitted values, called `salaryhat`, and the residuals, called `uhat`. 
+
+*The first four CEOs have lower salaries than what we predicted from the OLS regression line.* --- True or False?
+
+7. *The fifth CEO makes more than predicted from the OLS regression line.* --- True or False?
+
+
+8. Rather than measuring `salary` in thousands of dollars, we want to measure it in dollars. Mutate a new variable `salardol` using this expression  `salardol = 1000*salary`. Now estimate the following model:
+
+$$salarydol = \beta_{0} + \beta_{1}roe + u.$$
+*If the dependent variable is multiplied by the constant $c$ -- which means each value in the sample is multiplied by $c$ -- then the OLS intercept and slope estimates are also multiplied by $c$.* --- True or False?
+
+
+
+
+## [Problem 2: College GPA]{style="color: blue;"}
+
+[**SUBMIT PROBLEM 2 ANSWERS HERE**](https://forms.office.com/Pages/ResponsePage.aspx?id=GIvjszm6sUKsGjcltUihuh7wKeA4KWJDr7R5-P2dBuRUOUVKN1JEM1RNWlhYVjdZOVFHWVBENERaTC4u)
+
+`wooldridge::gpa1`
+
+  - `colGPA`: college grade point average
+  
+  - `hsGPA`: high school GPA 
+  
+     - both college and high school GPAs are on a four-point scale.
+  
+  - `ACT`: standardized test score
+  
+  - `PC`: dummy variable
+     
+     - 1 if a student owns a personal computer
+     
+     - 0 otherwise
+
+
+1. *How many students own PC?*
+
+Estimate the following model:
+
+$$colGPA = \beta_{0} + \beta_{1}\ hsGPA +  \beta_{2}\ ACT + u.$$
+
+2. *There is a positive partial relationship between `colGPA` and `hsGPA`: holding ACT fixed, another point on `hsGPA` is associated with .453 of a point on the college GPA * --- True or False?
+
+3. *Given the fact that the highest possible score on the ACT is 36, the coefficient on ACT practically small.* --- True or False?
+
+
+4. To determine the effects of computer ownership on college grade point average, estimate the following model:
+
+$$colGPA = \beta_{0} + \delta_{0} \ PC + \beta_{1}\ hsGPA +  \beta_{2}\ ACT + u.$$
+*This equation implies that a student who owns a PC has a predicted GPA about 1.6 points higher than a comparable student without a PC.* --- True or False?
+
+5. Generate a factor variable `PC2`: "Yes" if `PC = 0` otherwise "No".  Similarly, generate `PC3` with `levels = c("Yes", "No")`.
+
+Estimate the following models:
+
+$$colGPA = \beta_{0} + \delta_{0} \ PC2+ \beta_{1}\ hsGPA +  \beta_{2}\ ACT + u.$$
+
+$$colGPA = \beta_{0} + \delta_{0} \ PC3+ \beta_{1}\ hsGPA +  \beta_{2}\ ACT + u.$$
+
+- coefficient of `PC2No`?
+
+- coefficient of `PC3Yes`?
