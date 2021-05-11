@@ -1,0 +1,18 @@
+---
+title: "Week 12"
+date: "11 May 2021"
+author: "Bhaswar Chakma"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = FALSE, warning = FALSE, message = FALSE)
+```
+
+
+
+[**Click here for slide and RMD **](https://ucppt-my.sharepoint.com/:f:/g/personal/bhaswar_chakma_ucp_pt/EqzoMzkKUu5Nokp5QyB_cDcB7iHRj168PMthDf3HJkfAYA?e=XYm7K0)

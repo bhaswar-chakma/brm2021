@@ -1,0 +1,118 @@
+---
+title: "Tables & Equations"
+output:
+  bookdown::html_document2:
+    toc: false
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Library
+
+```{r lib}
+library(tidyverse)
+library(stargazer) # for reg table
+library(MASS) # for data
+library(gapminder)# for data
+```
+
+
+
+# Tables
+
+## Regression table with `stargazer()`
+
+We will use [\textcolor{blue}{25.8 An Example}.](https://af-ucp.courses/brm/ldv.html#anexample001)
+
+```{r models}
+# ols
+m0 <- lm(low ~ smoke + race + ht + ui + ftv + age + lwt,
+         data = birthwt)
+# logit
+m1 <- glm(low ~ smoke + race + ht + ui + ftv + age + lwt,
+          data = birthwt,
+          family = binomial(link = "logit"))
+# probit
+m2 <- glm(low ~ smoke + race + ht + ui + ftv + age + lwt,
+          data = birthwt,
+          family = binomial(link = "probit"))
+```
+
+
+```{r regtable, results='asis'}
+stargazer::stargazer(m0, m1, m2, 
+                     type = "html",
+                     title = "Results",
+                     label = "tab:regression1")
+```
+
+
+## Stat table with `kable()`
+
+We will use the `gapminder::gapminder` data.
+
+```{r prepare-stat}
+df <- gapminder::gapminder %>%
+  filter(year >= 2000) %>% 
+  group_by(year, continent) %>% 
+  summarise(mean_life_exp = mean(lifeExp)) %>% 
+  pivot_wider(
+    names_from = year,
+    values_from = mean_life_exp
+  )
+```
+
+
+```{r stat-table}
+knitr::kable(df,
+             booktabs = TRUE, caption = 'Simple Stat Table')
+```
+
+# Cross Ref
+
+ Table \@ref(tab:regtable) presents models' coefficients; Table \@ref(tab:stat-table) presents summary ...
+ 
+
+# Dynamic Number
+
+We will work with the logit model `m1`. Suppose you want to extract the coefficient of age.
+
+Note that there are many ways to achieve it. I just present some examples.
+
+## Using `broom`
+
+```{r broom-m1}
+broom::tidy(m1)
+```
+
+
+
+```{r broom-coeff-age}
+broom::tidy(m1)[7,2]# returns a tibble
+broom::tidy(m1)[7,2] %>% pull() # returns a vector
+
+```
+
+
+- The coefficient of age is `r broom::tidy(m1)[7,2]`
+
+- The coefficient of age is `r broom::tidy(m1)[7,2] %>% pull()`
+
+We can use `round()` to round the number. For example `round()` with `digits = 3` gives the following
+
+- The coefficient of age is `r round(broom::tidy(m1)[7,2], digits  = 3)`
+
+## Using base R
+
+```{r base-m1}
+summary(m1)
+```
+```{r}
+summary(m1)$coefficients[7, 1] # returns a vector
+```
+- The coefficient of age is `r summary(m1)$coefficients[7, 1]`
+
+- The coefficient of age is `r m1$coefficients[7]`
